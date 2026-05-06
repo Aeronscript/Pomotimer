@@ -13,10 +13,7 @@ import com.getcapacitor.BridgeActivity;
 public class MainActivity extends BridgeActivity {
     private static final String APP_SYSTEM_BAR_COLOR = "#FFF7F1";
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    private void applyImmersiveMode() {
         Window window = getWindow();
         WindowCompat.setDecorFitsSystemWindows(window, false);
         window.setStatusBarColor(Color.parseColor(APP_SYSTEM_BAR_COLOR));
@@ -29,6 +26,26 @@ public class MainActivity extends BridgeActivity {
         insetsController.setSystemBarsBehavior(
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         );
-        insetsController.hide(WindowInsetsCompat.Type.statusBars());
+        insetsController.hide(WindowInsetsCompat.Type.systemBars());
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        applyImmersiveMode();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        applyImmersiveMode();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            applyImmersiveMode();
+        }
     }
 }

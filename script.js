@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.9";
+const WEB_APP_VERSION = "1.2.10";
 const NATIVE_STATUS_BAR_COLOR = "#FFF7F1";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
@@ -1009,6 +1009,14 @@ async function init() {
   resumeRunningTimer();
   dismissStartupSplash();
   checkForUpdates();
+
+  if (isNativeCapacitor && appPlugin?.addListener) {
+    appPlugin.addListener("appStateChange", async ({ isActive }) => {
+      if (isActive) {
+        await applyNativeStatusBarTheme();
+      }
+    });
+  }
 }
 
 if ("serviceWorker" in navigator) {

@@ -1,11 +1,11 @@
 {
-  "latestVersion": "1.2.9",
-  "versionCode": 12,
-  "releasedAt": "2026-05-06T14:42:43.717Z",
-  "message": "Pomotimer s'ouvre maintenant en plein ecran.",
+  "latestVersion": "1.2.10",
+  "versionCode": 13,
+  "releasedAt": "2026-05-06T15:01:03.974Z",
+  "message": "Pomotimer renforce maintenant le mode immersif.",
   "apkPath": "/downloads/pomotimer-release.apk",
   "notes": [
-    "Barre du haut masquee au lancement",
-    "Ouverture plus immersive"
+    "Mode immersif reapplique au retour",
+    "Barres systeme cachees plus agressivement"
   ]
 }
