@@ -54,12 +54,12 @@
               >
                 <span class="material-symbols-rounded" aria-hidden="true">more_horiz</span>
               </button>
-              <div id="topMenu" class="top-menu is-hidden" role="menu" aria-label="Menu rapide">
+              <div id="topMenu" class="top-menu is-hidden" role="menu" aria-label="Menu rapide" hidden>
                 <button id="menuUpdateButton" class="menu-item" type="button" role="menuitem">
                   <span class="material-symbols-rounded" aria-hidden="true">system_update_alt</span>
                   <span>Verifier</span>
                 </button>
-                <button id="menuInstallButton" class="menu-item is-hidden" type="button" role="menuitem">
+                <button id="menuInstallButton" class="menu-item is-hidden" type="button" role="menuitem" hidden>
                   <span class="material-symbols-rounded" aria-hidden="true">install_mobile</span>
                   <span>Installer update</span>
                 </button>
@@ -74,14 +74,6 @@
                     <button class="menu-mode" data-mode="soft" type="button">Detendu</button>
                   </div>
                 </div>
-                <button id="menuNotifyButton" class="menu-item" type="button" role="menuitem">
-                  <span class="material-symbols-rounded" aria-hidden="true">notifications</span>
-                  <span>Notifications</span>
-                </button>
-                <button id="menuSettingsButton" class="menu-item" type="button" role="menuitem">
-                  <span class="material-symbols-rounded" aria-hidden="true">tune</span>
-                  <span>Reglages</span>
-                </button>
               </div>
             </div>
           </section>
@@ -240,7 +232,7 @@
           </div>
         </section>
 
-        <section id="settingsView" class="view" aria-label="Reglages">
+        <section id="settingsView" class="view" aria-label="Reglages" hidden>
           <div class="surface-card surface-card--tall">
             <div class="section-head section-head--stack">
               <div>
@@ -253,7 +245,7 @@
                 <div class="settings-pair">
                   <div>
                     <span class="settings-label">Version actuelle</span>
-                    <strong id="currentVersionValue" class="settings-value">1.2.18</strong>
+                    <strong id="currentVersionValue" class="settings-value">1.2.19</strong>
                   </div>
                   <div>
                     <span class="settings-label">Derniere detectee</span>
@@ -301,7 +293,7 @@
         </section>
       </main>
 
-      <nav class="bottom-nav" aria-label="Navigation principale">
+      <nav class="bottom-nav bottom-nav--three" aria-label="Navigation principale">
         <button class="nav-item is-active" data-tab="timer" type="button">
           <span class="material-symbols-rounded nav-icon" aria-hidden="true">timer</span>
           <span>Timer</span>
@@ -313,10 +305,6 @@
         <button class="nav-item" data-tab="notes" type="button">
           <span class="material-symbols-rounded nav-icon" aria-hidden="true">sticky_note_2</span>
           <span>Notes</span>
-        </button>
-        <button class="nav-item" data-tab="settings" type="button">
-          <span class="material-symbols-rounded nav-icon" aria-hidden="true">tune</span>
-          <span>Reglages</span>
         </button>
       </nav>
     </div>

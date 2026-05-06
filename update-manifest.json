@@ -1,12 +1,12 @@
 {
-  "latestVersion": "1.2.18",
-  "versionCode": 21,
-  "releasedAt": "2026-05-06T17:28:42.645Z",
-  "message": "Timeralpha corrige l'affichage du menu rapide sur le web et dans l'app.",
+  "latestVersion": "1.2.19",
+  "versionCode": 22,
+  "releasedAt": "2026-05-06T17:46:20.070Z",
+  "message": "Timeralpha simplifie le menu rapide et recentre mieux son habillage.",
   "apkPath": "/downloads/timeralpha-release.apk",
   "notes": [
-    "Menu rapide masque correctement par defaut",
-    "Meme front stabilise sur web et dans l'app",
-    "Correctifs precedents du splash conserves"
+    "Menu rapide limite a update et ambiances",
+    "Ambiances rangees proprement et appliquees globalement",
+    "Header et zones mixtes mieux fondus dans l'ecran"
   ]
 }

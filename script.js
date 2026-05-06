@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.18";
+const WEB_APP_VERSION = "1.2.19";
 const NATIVE_STATUS_BAR_COLOR = "#FFF7F1";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
@@ -54,8 +54,6 @@ const menuToggleButton = document.getElementById("menuToggleButton");
 const topMenu = document.getElementById("topMenu");
 const menuUpdateButton = document.getElementById("menuUpdateButton");
 const menuInstallButton = document.getElementById("menuInstallButton");
-const menuNotifyButton = document.getElementById("menuNotifyButton");
-const menuSettingsButton = document.getElementById("menuSettingsButton");
 const menuModeButtons = document.querySelectorAll(".menu-mode");
 const updateModal = document.getElementById("updateModal");
 const updateModalTitle = document.getElementById("updateModalTitle");
@@ -681,27 +679,41 @@ function switchTab(target) {
 }
 
 function renderUpdateState() {
-  currentVersionValue.textContent = currentVersion;
-  latestVersionValue.textContent = latestUpdate?.latestVersion || "-";
-  updateServerInput.value = updateServerUrl;
+  if (currentVersionValue) {
+    currentVersionValue.textContent = currentVersion;
+  }
+  if (latestVersionValue) {
+    latestVersionValue.textContent = latestUpdate?.latestVersion || "-";
+  }
+  if (updateServerInput) {
+    updateServerInput.value = updateServerUrl;
+  }
 
   if (!latestUpdate) {
     updateBanner.classList.add("is-hidden");
     menuInstallButton.classList.add("is-hidden");
+    menuInstallButton.hidden = true;
     return;
   }
 
   const needsUpdate = compareVersions(latestUpdate.latestVersion, currentVersion) > 0;
   updateBanner.classList.toggle("is-hidden", !needsUpdate);
   menuInstallButton.classList.toggle("is-hidden", !needsUpdate);
+  menuInstallButton.hidden = !needsUpdate;
 
   if (needsUpdate) {
     updateBannerText.textContent = `Version ${latestUpdate.latestVersion} disponible`;
-    updateStatusText.textContent = `Version ${latestUpdate.latestVersion} disponible.`;
+    if (updateStatusText) {
+      updateStatusText.textContent = `Version ${latestUpdate.latestVersion} disponible.`;
+    }
     menuInstallButton.lastElementChild.textContent = `Installer ${latestUpdate.latestVersion}`;
   } else {
-    latestVersionValue.textContent = currentVersion;
-    updateStatusText.textContent = `Timeralpha est a jour en version ${currentVersion}.`;
+    if (latestVersionValue) {
+      latestVersionValue.textContent = currentVersion;
+    }
+    if (updateStatusText) {
+      updateStatusText.textContent = `Timeralpha est a jour en version ${currentVersion}.`;
+    }
   }
 }
 
@@ -731,11 +743,17 @@ function closeUpdateModal() {
 function closeTopMenu() {
   isTopMenuOpen = false;
   topMenu?.classList.add("is-hidden");
+  if (topMenu) {
+    topMenu.hidden = true;
+  }
   menuToggleButton?.setAttribute("aria-expanded", "false");
 }
 
 function toggleTopMenu() {
   isTopMenuOpen = !isTopMenuOpen;
+  if (topMenu) {
+    topMenu.hidden = !isTopMenuOpen;
+  }
   topMenu?.classList.toggle("is-hidden", !isTopMenuOpen);
   menuToggleButton?.setAttribute("aria-expanded", String(isTopMenuOpen));
 }
@@ -767,7 +785,9 @@ async function checkForUpdates({ manual = false } = {}) {
   const serverUrl = updateServerUrl.trim().replace(/\/+$/, "");
 
   if (!serverUrl) {
-    updateStatusText.textContent = "Aucun serveur de mise a jour defini.";
+    if (updateStatusText) {
+      updateStatusText.textContent = "Aucun serveur de mise a jour defini.";
+    }
     if (manual) {
       showToast("Definis d'abord un serveur de mise a jour.");
     }
@@ -775,7 +795,9 @@ async function checkForUpdates({ manual = false } = {}) {
   }
 
   const manifestUrl = `${serverUrl}/update-manifest.json?ts=${Date.now()}`;
-  updateStatusText.textContent = "Verification en cours...";
+  if (updateStatusText) {
+    updateStatusText.textContent = "Verification en cours...";
+  }
 
   try {
     const response = await fetch(manifestUrl, {
@@ -800,20 +822,26 @@ async function checkForUpdates({ manual = false } = {}) {
     renderUpdateState();
 
     if (compareVersions(latestUpdate.latestVersion, currentVersion) > 0) {
-      updateStatusText.textContent = `Mise a jour detectee vers ${latestUpdate.latestVersion}.`;
+      if (updateStatusText) {
+        updateStatusText.textContent = `Mise a jour detectee vers ${latestUpdate.latestVersion}.`;
+      }
       if (manual) {
         openUpdateModal();
       }
       return;
     }
 
-    updateStatusText.textContent = `Aucune mise a jour disponible.`;
+    if (updateStatusText) {
+      updateStatusText.textContent = `Aucune mise a jour disponible.`;
+    }
     if (manual) {
       showToast("Timeralpha est deja a jour.");
     }
   } catch (error) {
     console.error("Impossible de verifier les mises a jour.", error);
-    updateStatusText.textContent = "Echec de verification du serveur de mise a jour.";
+    if (updateStatusText) {
+      updateStatusText.textContent = "Echec de verification du serveur de mise a jour.";
+    }
     if (manual) {
       showToast("Impossible de verifier la mise a jour.");
     }
@@ -823,7 +851,9 @@ async function checkForUpdates({ manual = false } = {}) {
 function saveUpdateServer() {
   updateServerUrl = normalizeUpdateServerUrl(updateServerInput.value);
   window.localStorage.setItem(UPDATE_SERVER_STORAGE_KEY, updateServerUrl);
-  updateStatusText.textContent = `Serveur enregistre: ${updateServerUrl}`;
+  if (updateStatusText) {
+    updateStatusText.textContent = `Serveur enregistre: ${updateServerUrl}`;
+  }
   showToast("Serveur de mise a jour enregistre.");
 }
 
@@ -980,11 +1010,6 @@ function attachEvents() {
     checkForUpdates({ manual: true });
   });
   menuInstallButton?.addEventListener("click", openUpdateInstaller);
-  menuNotifyButton?.addEventListener("click", requestNotifications);
-  menuSettingsButton?.addEventListener("click", () => {
-    closeTopMenu();
-    switchTab("settings");
-  });
   menuModeButtons.forEach((button) => {
     button.addEventListener("click", () => {
       setAmbienceMode(button.dataset.mode);
