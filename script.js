@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.14";
+const WEB_APP_VERSION = "1.2.15";
 const NATIVE_STATUS_BAR_COLOR = "#FFF7F1";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
@@ -17,6 +17,7 @@ const HISTORY_STORAGE_KEY = "pomotimer-history";
 const NOTES_STORAGE_KEY = "pomotimer-notes";
 const TIMER_STATE_STORAGE_KEY = "pomotimer-timer-state";
 const UPDATE_SERVER_STORAGE_KEY = "pomotimer-update-server";
+const AMBIENCE_STORAGE_KEY = "timeralpha-ambience";
 const NATIVE_TIMER_NOTIFICATION_ID = 1001;
 const NATIVE_NOTIFICATION_CHANNEL_ID = "pomotimer-reminders";
 
@@ -25,12 +26,12 @@ const secondsEl = document.getElementById("seconds");
 const sessionLabelEl = document.getElementById("sessionLabel");
 const phaseBadge = document.getElementById("phaseBadge");
 const roundCountEl = document.getElementById("roundCount");
-const goalCountEl = document.getElementById("goalCount");
 const toggleButton = document.getElementById("toggleTimer");
 const resetTimerButton = document.getElementById("resetTimerButton");
 const notifyButton = document.getElementById("notifyButton");
 const presetButtons = document.querySelectorAll(".preset-button");
 const progressRing = document.getElementById("progressRing");
+const sessionProgressBar = document.getElementById("sessionProgressBar");
 const historyList = document.getElementById("historyList");
 const historyTotal = document.getElementById("historyTotal");
 const historyToday = document.getElementById("historyToday");
@@ -46,12 +47,16 @@ const historyView = document.getElementById("historyView");
 const notesView = document.getElementById("notesView");
 const settingsView = document.getElementById("settingsView");
 const startupSplash = document.getElementById("startupSplash");
-const updateChip = document.getElementById("updateChip");
 const updateBanner = document.getElementById("updateBanner");
 const updateBannerText = document.getElementById("updateBannerText");
 const openUpdateModalButton = document.getElementById("openUpdateModalButton");
-const checkUpdateButton = document.getElementById("checkUpdateButton");
-const downloadAppButton = document.getElementById("downloadAppButton");
+const menuToggleButton = document.getElementById("menuToggleButton");
+const topMenu = document.getElementById("topMenu");
+const menuUpdateButton = document.getElementById("menuUpdateButton");
+const menuInstallButton = document.getElementById("menuInstallButton");
+const menuNotifyButton = document.getElementById("menuNotifyButton");
+const menuSettingsButton = document.getElementById("menuSettingsButton");
+const menuModeButtons = document.querySelectorAll(".menu-mode");
 const updateModal = document.getElementById("updateModal");
 const updateModalTitle = document.getElementById("updateModalTitle");
 const updateModalBody = document.getElementById("updateModalBody");
@@ -93,6 +98,8 @@ let latestUpdate = null;
 let updateServerUrl = "";
 let activeTab = "timer";
 let toastTimer = null;
+let isTopMenuOpen = false;
+let ambienceMode = readAmbienceMode();
 
 function readStorage(key) {
   try {
@@ -102,6 +109,11 @@ function readStorage(key) {
     console.error(`Impossible de lire ${key}`, error);
     return [];
   }
+}
+
+function readAmbienceMode() {
+  const storedMode = window.localStorage.getItem(AMBIENCE_STORAGE_KEY);
+  return ["focus", "calm", "soft"].includes(storedMode) ? storedMode : "focus";
 }
 
 function writeStorage(key, value) {
@@ -404,6 +416,7 @@ async function requestNotifications() {
         ? "Notifications natives actives."
         : "Les notifications natives restent bloquees."
     );
+    closeTopMenu();
     return;
   }
 
@@ -425,6 +438,7 @@ async function requestNotifications() {
   }
 
   updateNotificationButton();
+  closeTopMenu();
 }
 
 function beep() {
@@ -489,7 +503,11 @@ function renderTime() {
 
 function renderStats() {
   roundCountEl.textContent = `${rounds}/${MAX_ROUNDS}`;
-  goalCountEl.textContent = `${goals}/${MAX_GOALS}`;
+
+  if (sessionProgressBar) {
+    const progress = Math.min(rounds / MAX_ROUNDS, 1);
+    sessionProgressBar.style.setProperty("--session-progress", `${progress}`);
+  }
 }
 
 function renderSessionMeta() {
@@ -498,11 +516,29 @@ function renderSessionMeta() {
   }
 
   if (phase === "focus") {
-    sessionMetaText.textContent = `Cycle focus ${selectedMinutes} min, pause ${breakMinutes} min ensuite.`;
+    sessionMetaText.textContent = `${selectedMinutes} min focus · ${breakMinutes} min pause`;
     return;
   }
 
-  sessionMetaText.textContent = `Pause ${breakMinutes} min avant le retour sur ${selectedMinutes} min de focus.`;
+  sessionMetaText.textContent = `${breakMinutes} min pause · retour ${selectedMinutes} min`;
+}
+
+function renderAmbienceMode() {
+  document.body.dataset.ambience = ambienceMode;
+  menuModeButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.mode === ambienceMode);
+  });
+}
+
+function setAmbienceMode(mode) {
+  if (!["focus", "calm", "soft"].includes(mode)) {
+    return;
+  }
+
+  ambienceMode = mode;
+  window.localStorage.setItem(AMBIENCE_STORAGE_KEY, ambienceMode);
+  renderAmbienceMode();
+  closeTopMenu();
 }
 
 function renderPhase() {
@@ -650,18 +686,19 @@ function renderUpdateState() {
   updateServerInput.value = updateServerUrl;
 
   if (!latestUpdate) {
-    updateChip.classList.add("is-hidden");
     updateBanner.classList.add("is-hidden");
+    menuInstallButton.classList.add("is-hidden");
     return;
   }
 
   const needsUpdate = compareVersions(latestUpdate.latestVersion, currentVersion) > 0;
-  updateChip.classList.toggle("is-hidden", !needsUpdate);
   updateBanner.classList.toggle("is-hidden", !needsUpdate);
+  menuInstallButton.classList.toggle("is-hidden", !needsUpdate);
 
   if (needsUpdate) {
-    updateBannerText.textContent = `Version ${latestUpdate.latestVersion} disponible. Installation recommandee.`;
+    updateBannerText.textContent = `Version ${latestUpdate.latestVersion} disponible`;
     updateStatusText.textContent = `Version ${latestUpdate.latestVersion} disponible.`;
+    menuInstallButton.lastElementChild.textContent = `Installer ${latestUpdate.latestVersion}`;
   } else {
     latestVersionValue.textContent = currentVersion;
     updateStatusText.textContent = `Timeralpha est a jour en version ${currentVersion}.`;
@@ -687,24 +724,20 @@ function openUpdateModal() {
   updateModal.classList.remove("is-hidden");
 }
 
-async function openDownloadPage() {
-  const downloadUrl = `${updateServerUrl.replace(/\/+$/, "")}/download`;
-
-  try {
-    if (isNativeCapacitor && browserPlugin?.open) {
-      await browserPlugin.open({ url: downloadUrl });
-      return;
-    }
-
-    window.location.href = downloadUrl;
-  } catch (error) {
-    console.error("Impossible d'ouvrir la page de telechargement.", error);
-    showToast("Impossible d'ouvrir la page de telechargement.");
-  }
-}
-
 function closeUpdateModal() {
   updateModal.classList.add("is-hidden");
+}
+
+function closeTopMenu() {
+  isTopMenuOpen = false;
+  topMenu.classList.add("is-hidden");
+  menuToggleButton.setAttribute("aria-expanded", "false");
+}
+
+function toggleTopMenu() {
+  isTopMenuOpen = !isTopMenuOpen;
+  topMenu.classList.toggle("is-hidden", !isTopMenuOpen);
+  menuToggleButton.setAttribute("aria-expanded", String(isTopMenuOpen));
 }
 
 async function openUpdateInstaller() {
@@ -714,6 +747,7 @@ async function openUpdateInstaller() {
   }
 
   closeUpdateModal();
+  closeTopMenu();
   showToast(`Preparation de Timeralpha ${latestUpdate.latestVersion}...`);
 
   try {
@@ -932,14 +966,30 @@ function attachEvents() {
   toggleButton.addEventListener("click", toggleTimer);
   resetTimerButton.addEventListener("click", () => resetTimer(phase));
   notifyButton.addEventListener("click", requestNotifications);
-  checkUpdateButton.addEventListener("click", () => checkForUpdates({ manual: true }));
-  downloadAppButton.addEventListener("click", openDownloadPage);
-  updateChip.addEventListener("click", openUpdateModal);
   openUpdateModalButton.addEventListener("click", openUpdateModal);
   updateLaterButton.addEventListener("click", closeUpdateModal);
   updateNowButton.addEventListener("click", openUpdateInstaller);
   saveUpdateServerButton.addEventListener("click", saveUpdateServer);
   notesForm.addEventListener("submit", saveNote);
+  menuToggleButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleTopMenu();
+  });
+  menuUpdateButton.addEventListener("click", () => {
+    closeTopMenu();
+    checkForUpdates({ manual: true });
+  });
+  menuInstallButton.addEventListener("click", openUpdateInstaller);
+  menuNotifyButton.addEventListener("click", requestNotifications);
+  menuSettingsButton.addEventListener("click", () => {
+    closeTopMenu();
+    switchTab("settings");
+  });
+  menuModeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setAmbienceMode(button.dataset.mode);
+    });
+  });
 
   presetButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -1001,6 +1051,23 @@ function attachEvents() {
     }
   });
 
+  document.addEventListener("click", (event) => {
+    if (!isTopMenuOpen) {
+      return;
+    }
+
+    const target = event.target;
+    if (!(target instanceof Node)) {
+      return;
+    }
+
+    if (topMenu.contains(target) || menuToggleButton.contains(target)) {
+      return;
+    }
+
+    closeTopMenu();
+  });
+
   window.addEventListener("focus", () => {
     tick();
     checkForUpdates();
@@ -1018,6 +1085,7 @@ async function init() {
   renderHistory();
   renderNotes();
   updateNotificationButton();
+  renderAmbienceMode();
   renderAll();
   switchTab(activeTab);
   attachEvents();

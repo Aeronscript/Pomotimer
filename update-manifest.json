@@ -1,12 +1,12 @@
 {
-  "latestVersion": "1.2.14",
-  "versionCode": 17,
-  "releasedAt": "2026-05-06T16:12:55.048Z",
-  "message": "Timeralpha gagne une interface plus propre, plus compacte et plus mobile.",
+  "latestVersion": "1.2.15",
+  "versionCode": 18,
+  "releasedAt": "2026-05-06T16:43:02.579Z",
+  "message": "Timeralpha adopte un menu plus discret et trois ambiances visuelles plus posees.",
   "apkPath": "/downloads/timeralpha-release.apk",
   "notes": [
-    "Bandeau haut redesigné et mieux integre",
-    "Cartes round et goal retravaillees",
-    "Navigation basse plus legere et plus premium"
+    "Menu rapide avec verification et installation de mise a jour",
+    "Ambiances Focus, Calme et Detendu",
+    "Session centrale simplifiee avec progression legere"
   ]
 }

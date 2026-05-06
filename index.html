@@ -32,46 +32,60 @@
     </div>
 
     <div class="app-shell">
-      <button id="updateChip" class="update-fab is-hidden" type="button">Mise a jour</button>
-
       <main class="views">
         <section id="timerView" class="view is-active" aria-label="Minuteur">
           <section class="topband">
             <div class="topband-brand">
-              <div class="topband-mark">
-                <img src="icons/icon.svg" alt="" />
-              </div>
-              <div class="topband-copy">
-                <p class="topband-eyebrow">Timeralpha</p>
-                <h1 class="topband-title">Clarte calme, cadence nette.</h1>
-                <p class="topband-copyline">Un minuteur plus net, des cycles lisibles, une vraie presence mobile.</p>
-              </div>
+              <p class="topband-eyebrow">Timeralpha</p>
             </div>
-            <div class="topband-actions">
+            <div class="topband-actions topband-actions--menu">
               <button
-                id="downloadAppButton"
-                class="utility-button utility-button--accent"
-                type="button"
-                aria-label="Telecharger la derniere version"
-              >
-                <span class="material-symbols-rounded" aria-hidden="true">download</span>
-              </button>
-              <button
-                id="checkUpdateButton"
+                id="menuToggleButton"
                 class="utility-button"
                 type="button"
-                aria-label="Verifier les mises a jour"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false"
+                aria-controls="topMenu"
               >
-                <span class="material-symbols-rounded" aria-hidden="true">system_update_alt</span>
+                <span class="material-symbols-rounded" aria-hidden="true">more_horiz</span>
               </button>
+              <div id="topMenu" class="top-menu is-hidden" role="menu" aria-label="Menu rapide">
+                <button id="menuUpdateButton" class="menu-item" type="button" role="menuitem">
+                  <span class="material-symbols-rounded" aria-hidden="true">system_update_alt</span>
+                  <span>Verifier</span>
+                </button>
+                <button id="menuInstallButton" class="menu-item is-hidden" type="button" role="menuitem">
+                  <span class="material-symbols-rounded" aria-hidden="true">install_mobile</span>
+                  <span>Installer update</span>
+                </button>
+                <div class="menu-group" role="none">
+                  <div class="menu-group-head">
+                    <span class="material-symbols-rounded" aria-hidden="true">palette</span>
+                    <span>Ambiance</span>
+                  </div>
+                  <div class="menu-modes" role="none">
+                    <button class="menu-mode is-active" data-mode="focus" type="button">Focus</button>
+                    <button class="menu-mode" data-mode="calm" type="button">Calme</button>
+                    <button class="menu-mode" data-mode="soft" type="button">Detendu</button>
+                  </div>
+                </div>
+                <button id="menuNotifyButton" class="menu-item" type="button" role="menuitem">
+                  <span class="material-symbols-rounded" aria-hidden="true">notifications</span>
+                  <span>Notifications</span>
+                </button>
+                <button id="menuSettingsButton" class="menu-item" type="button" role="menuitem">
+                  <span class="material-symbols-rounded" aria-hidden="true">tune</span>
+                  <span>Reglages</span>
+                </button>
+              </div>
             </div>
           </section>
 
           <div class="timer-panel">
             <div class="utility-row">
               <div class="utility-meta">
-                <span class="utility-kicker">Session active</span>
-                <p id="sessionMetaText" class="utility-caption">Cycle focus 20 min, pause 5 min.</p>
+                <span class="utility-kicker">Cycle</span>
+                <p id="sessionMetaText" class="utility-caption">25 min focus · 5 min pause</p>
               </div>
               <span id="phaseBadge" class="phase-badge">FOCUS</span>
             </div>
@@ -93,23 +107,20 @@
               </div>
             </div>
 
-            <div class="metrics-strip">
-              <article class="metric-card">
-                <span class="metric-label">Round</span>
-                <strong id="roundCount" class="metric-value">0/4</strong>
-                <span class="metric-caption">Cycle court en cours</span>
-              </article>
-              <article class="metric-card">
-                <span class="metric-label">Goal</span>
-                <strong id="goalCount" class="metric-value">0/12</strong>
-                <span class="metric-caption">Objectif global vise</span>
-              </article>
-            </div>
-
             <div class="control-row">
               <button id="toggleTimer" class="primary-action" type="button">Demarrer</button>
               <button id="resetTimerButton" class="secondary-action" type="button">Reinitialiser</button>
             </div>
+
+            <article class="session-strip">
+              <div class="session-strip-head">
+                <span class="metric-label">Sessions</span>
+                <strong id="roundCount" class="session-strip-value">0/4</strong>
+              </div>
+              <div class="session-progress" aria-hidden="true">
+                <span id="sessionProgressBar" class="session-progress-bar"></span>
+              </div>
+            </article>
           </div>
 
           <section class="surface-card surface-card--compact">
@@ -237,7 +248,7 @@
                 <div class="settings-pair">
                   <div>
                     <span class="settings-label">Version actuelle</span>
-                    <strong id="currentVersionValue" class="settings-value">1.2.14</strong>
+                    <strong id="currentVersionValue" class="settings-value">1.2.15</strong>
                   </div>
                   <div>
                     <span class="settings-label">Derniere detectee</span>
