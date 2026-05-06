@@ -40,6 +40,38 @@
     0 14px 28px rgba(0, 0, 0, 0.18);
   --chip-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 250, 244, 0.62));
   --button-surface: rgba(255, 255, 255, 0.76);
+  --page-background:
+    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.96), transparent 24%),
+    radial-gradient(circle at 88% 8%, rgba(242, 106, 75, 0.24), transparent 19%),
+    radial-gradient(circle at 68% 26%, rgba(227, 73, 55, 0.14), transparent 24%),
+    radial-gradient(circle at 18% 84%, rgba(249, 142, 83, 0.18), transparent 23%),
+    linear-gradient(180deg, #fff7f1 0%, #f9f1e8 32%, #f4e8dc 100%);
+  --system-scrim:
+    linear-gradient(180deg, rgba(22, 18, 16, 0.24) 0%, rgba(56, 36, 26, 0.12) 58%, rgba(255, 247, 241, 0) 100%);
+  --startup-background:
+    radial-gradient(circle at top, rgba(242, 106, 75, 0.15), transparent 26%),
+    linear-gradient(180deg, #f8f1e9 0%, #f2e8dc 100%);
+  --startup-mark-surface: rgba(255, 255, 255, 0.78);
+  --menu-surface: linear-gradient(180deg, rgba(255, 252, 248, 0.95), rgba(255, 247, 241, 0.88));
+  --menu-item-surface: rgba(255, 255, 255, 0.52);
+  --menu-group-surface: rgba(255, 255, 255, 0.48);
+  --menu-mode-surface: rgba(255, 255, 255, 0.66);
+  --menu-icon: rgba(23, 19, 17, 0.72);
+  --utility-button-surface: rgba(255, 255, 255, 0.84);
+  --utility-button-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.58),
+    0 10px 20px rgba(78, 53, 35, 0.08);
+  --session-strip-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 249, 242, 0.24));
+  --progress-track: rgba(39, 27, 20, 0.08);
+  --dial-shadow:
+    0 18px 38px rgba(78, 53, 35, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+  --text-inverse: #fff8f1;
+  --text-inverse-soft: rgba(255, 248, 241, 0.68);
+  --dial-separator: rgba(255, 248, 241, 0.42);
+  --metric-caption: rgba(116, 104, 95, 0.9);
+  --nav-surface: linear-gradient(180deg, rgba(255, 252, 248, 0.92), rgba(255, 248, 242, 0.78));
+  --nav-active-surface: linear-gradient(180deg, rgba(242, 106, 75, 0.18), rgba(255, 255, 255, 0.42));
   --radius-xl: 32px;
   --radius-lg: 24px;
   --radius-md: 18px;
@@ -66,12 +98,7 @@ body {
   min-height: 100dvh;
   font-family: "Plus Jakarta Sans", sans-serif;
   color: var(--text);
-  background:
-    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.96), transparent 24%),
-    radial-gradient(circle at 88% 8%, rgba(242, 106, 75, 0.24), transparent 19%),
-    radial-gradient(circle at 68% 26%, rgba(227, 73, 55, 0.14), transparent 24%),
-    radial-gradient(circle at 18% 84%, rgba(249, 142, 83, 0.18), transparent 23%),
-    linear-gradient(180deg, #fff7f1 0%, #f9f1e8 32%, #f4e8dc 100%);
+  background: var(--page-background);
   overscroll-behavior-y: none;
 }
 
@@ -96,7 +123,7 @@ body[data-ambience="calm"] {
   --time-card-surface: linear-gradient(180deg, #fffdf9 0%, #fff6ef 100%);
   --chip-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 246, 239, 0.66));
   --button-surface: rgba(255, 250, 245, 0.8);
-  background:
+  --page-background:
     radial-gradient(circle at 14% 10%, rgba(255, 255, 255, 0.96), transparent 24%),
     radial-gradient(circle at 84% 10%, rgba(236, 162, 109, 0.18), transparent 20%),
     radial-gradient(circle at 66% 22%, rgba(255, 219, 198, 0.18), transparent 25%),
@@ -125,12 +152,415 @@ body[data-ambience="soft"] {
   --time-card-surface: linear-gradient(180deg, #fffefd 0%, #fff7f0 100%);
   --chip-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 247, 240, 0.68));
   --button-surface: rgba(255, 252, 248, 0.82);
-  background:
+  --page-background:
     radial-gradient(circle at 14% 10%, rgba(255, 255, 255, 0.98), transparent 26%),
     radial-gradient(circle at 88% 10%, rgba(255, 183, 132, 0.12), transparent 22%),
     radial-gradient(circle at 68% 22%, rgba(255, 228, 213, 0.15), transparent 25%),
     radial-gradient(circle at 18% 82%, rgba(255, 214, 188, 0.14), transparent 24%),
     linear-gradient(180deg, #fffaf7 0%, #f7f0e8 40%, #efe3d8 100%);
+}
+
+body[data-ambience="midnight"] {
+  --bg: #13141d;
+  --surface: rgba(24, 26, 37, 0.82);
+  --surface-strong: rgba(29, 31, 44, 0.94);
+  --surface-soft: rgba(68, 73, 104, 0.3);
+  --line: rgba(174, 181, 228, 0.12);
+  --line-strong: rgba(174, 181, 228, 0.18);
+  --text: #f2eef7;
+  --muted: #b2abc3;
+  --accent: #8f79d8;
+  --accent-deep: #6050b6;
+  --accent-soft: rgba(143, 121, 216, 0.18);
+  --success-soft: rgba(90, 182, 146, 0.18);
+  --success-text: #9fe2c3;
+  --warning-soft: rgba(255, 179, 124, 0.2);
+  --warning-text: #ffd2a4;
+  --shadow: 0 22px 52px rgba(5, 6, 13, 0.44);
+  --shadow-soft: 0 12px 30px rgba(5, 6, 13, 0.24);
+  --topband-surface: linear-gradient(180deg, rgba(38, 41, 58, 0.7), rgba(22, 24, 34, 0.36));
+  --topband-glow:
+    radial-gradient(circle at 22% 48%, rgba(181, 169, 240, 0.24), transparent 26%),
+    radial-gradient(circle at 76% 42%, rgba(111, 97, 196, 0.34), transparent 36%),
+    radial-gradient(circle at 58% 18%, rgba(54, 73, 145, 0.22), transparent 30%);
+  --timer-panel-surface: linear-gradient(180deg, rgba(36, 39, 55, 0.92), rgba(23, 25, 35, 0.84));
+  --timer-panel-glow:
+    radial-gradient(circle at top right, rgba(103, 90, 188, 0.28), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.04), transparent 34%);
+  --dial-shell:
+    conic-gradient(var(--accent) calc(var(--progress) * 1turn), rgba(206, 212, 255, 0.1) 0),
+    radial-gradient(circle at center, rgba(197, 190, 237, 0.14) 0 55%, transparent 55%);
+  --dial-core:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, #0e1120, #171c2d);
+  --dial-halo: radial-gradient(circle, rgba(139, 121, 216, 0.34) 0%, rgba(102, 88, 176, 0.16) 34%, rgba(255, 255, 255, 0.04) 52%, transparent 72%);
+  --dial-halo-outer: radial-gradient(circle, rgba(160, 146, 233, 0.14) 0%, rgba(92, 83, 170, 0.16) 42%, transparent 72%);
+  --time-card-surface: linear-gradient(180deg, #f7f3ff 0%, #e9e0ff 100%);
+  --time-card-shadow: inset 0 -10px 18px rgba(109, 85, 179, 0.16), 0 14px 28px rgba(0, 0, 0, 0.28);
+  --chip-surface: linear-gradient(180deg, rgba(41, 45, 64, 0.86), rgba(23, 26, 37, 0.72));
+  --button-surface: rgba(39, 43, 61, 0.86);
+  --page-background:
+    radial-gradient(circle at 12% 10%, rgba(93, 86, 163, 0.28), transparent 22%),
+    radial-gradient(circle at 88% 10%, rgba(52, 71, 150, 0.2), transparent 24%),
+    radial-gradient(circle at 68% 24%, rgba(120, 85, 208, 0.14), transparent 22%),
+    radial-gradient(circle at 18% 84%, rgba(31, 44, 93, 0.24), transparent 22%),
+    linear-gradient(180deg, #141723 0%, #171c2d 36%, #101420 100%);
+  --system-scrim: linear-gradient(180deg, rgba(6, 7, 12, 0.42) 0%, rgba(12, 15, 25, 0.16) 58%, rgba(20, 23, 35, 0) 100%);
+  --startup-background:
+    radial-gradient(circle at top, rgba(143, 121, 216, 0.18), transparent 26%),
+    linear-gradient(180deg, #171b2b 0%, #111420 100%);
+  --startup-mark-surface: rgba(37, 40, 58, 0.92);
+  --menu-surface: linear-gradient(180deg, rgba(33, 37, 52, 0.96), rgba(20, 22, 34, 0.92));
+  --menu-item-surface: rgba(56, 61, 86, 0.42);
+  --menu-group-surface: rgba(48, 53, 76, 0.44);
+  --menu-mode-surface: rgba(62, 67, 94, 0.48);
+  --menu-icon: rgba(235, 231, 247, 0.82);
+  --utility-button-surface: rgba(39, 43, 61, 0.9);
+  --utility-button-shadow: inset 0 0 0 1px rgba(204, 196, 240, 0.08), 0 10px 20px rgba(4, 6, 14, 0.32);
+  --session-strip-surface: linear-gradient(180deg, rgba(38, 42, 60, 0.74), rgba(24, 27, 39, 0.56));
+  --progress-track: rgba(221, 227, 255, 0.12);
+  --dial-shadow: 0 20px 42px rgba(5, 6, 14, 0.4), inset 0 0 0 1px rgba(213, 207, 243, 0.08);
+  --text-inverse: #f5f2ff;
+  --text-inverse-soft: rgba(240, 236, 251, 0.72);
+  --dial-separator: rgba(241, 237, 255, 0.34);
+  --metric-caption: rgba(200, 194, 221, 0.84);
+  --nav-surface: linear-gradient(180deg, rgba(29, 32, 46, 0.96), rgba(18, 20, 31, 0.88));
+  --nav-active-surface: linear-gradient(180deg, rgba(143, 121, 216, 0.24), rgba(255, 255, 255, 0.08));
+}
+
+body[data-ambience="lagoon"] {
+  --bg: #102930;
+  --surface: rgba(18, 45, 53, 0.82);
+  --surface-strong: rgba(21, 54, 64, 0.94);
+  --surface-soft: rgba(83, 162, 174, 0.24);
+  --line: rgba(178, 236, 231, 0.14);
+  --line-strong: rgba(178, 236, 231, 0.22);
+  --text: #edfdf9;
+  --muted: #9fd2cf;
+  --accent: #23c2c7;
+  --accent-deep: #0e8e98;
+  --accent-soft: rgba(35, 194, 199, 0.18);
+  --success-soft: rgba(102, 217, 180, 0.18);
+  --success-text: #b7f0d8;
+  --warning-soft: rgba(255, 197, 122, 0.22);
+  --warning-text: #ffe1af;
+  --shadow: 0 22px 52px rgba(3, 14, 18, 0.34);
+  --topband-surface: linear-gradient(180deg, rgba(20, 56, 66, 0.78), rgba(15, 35, 42, 0.4));
+  --topband-glow:
+    radial-gradient(circle at 18% 50%, rgba(207, 255, 255, 0.18), transparent 24%),
+    radial-gradient(circle at 82% 42%, rgba(35, 194, 199, 0.3), transparent 36%),
+    radial-gradient(circle at 58% 20%, rgba(112, 217, 202, 0.2), transparent 30%);
+  --timer-panel-surface: linear-gradient(180deg, rgba(20, 58, 67, 0.94), rgba(13, 38, 45, 0.86));
+  --timer-panel-glow:
+    radial-gradient(circle at top right, rgba(35, 194, 199, 0.24), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(234, 255, 253, 0.06), transparent 34%);
+  --dial-shell:
+    conic-gradient(var(--accent) calc(var(--progress) * 1turn), rgba(198, 255, 255, 0.1) 0),
+    radial-gradient(circle at center, rgba(195, 255, 250, 0.16) 0 55%, transparent 55%);
+  --dial-core:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, #0c1e23, #133038);
+  --dial-halo: radial-gradient(circle, rgba(35, 194, 199, 0.3) 0%, rgba(14, 142, 152, 0.16) 34%, rgba(255, 255, 255, 0.04) 52%, transparent 72%);
+  --dial-halo-outer: radial-gradient(circle, rgba(181, 247, 247, 0.14) 0%, rgba(35, 194, 199, 0.14) 42%, transparent 72%);
+  --time-card-surface: linear-gradient(180deg, #efffff 0%, #d7fbfc 100%);
+  --time-card-shadow: inset 0 -10px 18px rgba(28, 141, 151, 0.16), 0 14px 28px rgba(0, 0, 0, 0.24);
+  --chip-surface: linear-gradient(180deg, rgba(24, 63, 72, 0.88), rgba(14, 40, 46, 0.74));
+  --button-surface: rgba(23, 58, 66, 0.88);
+  --page-background:
+    radial-gradient(circle at 12% 10%, rgba(88, 231, 221, 0.2), transparent 22%),
+    radial-gradient(circle at 88% 10%, rgba(25, 167, 186, 0.22), transparent 24%),
+    radial-gradient(circle at 68% 24%, rgba(111, 223, 212, 0.16), transparent 22%),
+    radial-gradient(circle at 18% 84%, rgba(5, 71, 78, 0.28), transparent 24%),
+    linear-gradient(180deg, #112d35 0%, #12363f 36%, #0d2228 100%);
+  --system-scrim: linear-gradient(180deg, rgba(4, 14, 17, 0.44) 0%, rgba(8, 27, 32, 0.16) 58%, rgba(17, 45, 53, 0) 100%);
+  --startup-background:
+    radial-gradient(circle at top, rgba(35, 194, 199, 0.18), transparent 26%),
+    linear-gradient(180deg, #12323a 0%, #0d2329 100%);
+  --startup-mark-surface: rgba(23, 60, 68, 0.92);
+  --menu-surface: linear-gradient(180deg, rgba(20, 54, 62, 0.96), rgba(13, 35, 40, 0.92));
+  --menu-item-surface: rgba(74, 168, 174, 0.2);
+  --menu-group-surface: rgba(62, 144, 154, 0.22);
+  --menu-mode-surface: rgba(81, 181, 182, 0.24);
+  --menu-icon: rgba(225, 255, 252, 0.84);
+  --utility-button-surface: rgba(24, 61, 69, 0.9);
+  --utility-button-shadow: inset 0 0 0 1px rgba(214, 255, 252, 0.08), 0 10px 20px rgba(3, 13, 17, 0.28);
+  --session-strip-surface: linear-gradient(180deg, rgba(22, 61, 69, 0.72), rgba(15, 40, 46, 0.56));
+  --progress-track: rgba(215, 255, 252, 0.12);
+  --dial-shadow: 0 20px 42px rgba(3, 12, 16, 0.36), inset 0 0 0 1px rgba(211, 255, 252, 0.08);
+  --text-inverse: #ecfffd;
+  --text-inverse-soft: rgba(233, 255, 252, 0.74);
+  --dial-separator: rgba(237, 255, 253, 0.34);
+  --metric-caption: rgba(184, 226, 223, 0.86);
+  --nav-surface: linear-gradient(180deg, rgba(18, 46, 52, 0.96), rgba(12, 32, 37, 0.9));
+  --nav-active-surface: linear-gradient(180deg, rgba(35, 194, 199, 0.24), rgba(255, 255, 255, 0.08));
+}
+
+body[data-ambience="berry"] {
+  --bg: #31162d;
+  --surface: rgba(56, 25, 51, 0.82);
+  --surface-strong: rgba(68, 30, 62, 0.94);
+  --surface-soft: rgba(215, 151, 192, 0.2);
+  --line: rgba(255, 217, 236, 0.14);
+  --line-strong: rgba(255, 217, 236, 0.22);
+  --text: #fff3fa;
+  --muted: #dfb3cb;
+  --accent: #ef7ca7;
+  --accent-deep: #cb4f7d;
+  --accent-soft: rgba(239, 124, 167, 0.18);
+  --success-soft: rgba(137, 203, 151, 0.18);
+  --success-text: #d8f1de;
+  --warning-soft: rgba(255, 197, 144, 0.22);
+  --warning-text: #ffe0bf;
+  --shadow: 0 22px 52px rgba(15, 3, 14, 0.36);
+  --topband-surface: linear-gradient(180deg, rgba(82, 35, 75, 0.74), rgba(45, 20, 41, 0.42));
+  --topband-glow:
+    radial-gradient(circle at 20% 48%, rgba(255, 236, 245, 0.18), transparent 24%),
+    radial-gradient(circle at 80% 42%, rgba(239, 124, 167, 0.32), transparent 36%),
+    radial-gradient(circle at 56% 18%, rgba(168, 98, 196, 0.18), transparent 30%);
+  --timer-panel-surface: linear-gradient(180deg, rgba(73, 31, 67, 0.94), rgba(46, 20, 42, 0.86));
+  --timer-panel-glow:
+    radial-gradient(circle at top right, rgba(239, 124, 167, 0.24), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(255, 241, 249, 0.06), transparent 34%);
+  --dial-shell:
+    conic-gradient(var(--accent) calc(var(--progress) * 1turn), rgba(255, 226, 239, 0.1) 0),
+    radial-gradient(circle at center, rgba(255, 215, 230, 0.16) 0 55%, transparent 55%);
+  --dial-core:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, #24111f, #35142d);
+  --dial-halo: radial-gradient(circle, rgba(239, 124, 167, 0.3) 0%, rgba(203, 79, 125, 0.16) 34%, rgba(255, 255, 255, 0.04) 52%, transparent 72%);
+  --dial-halo-outer: radial-gradient(circle, rgba(255, 220, 236, 0.14) 0%, rgba(239, 124, 167, 0.14) 42%, transparent 72%);
+  --time-card-surface: linear-gradient(180deg, #fff9fc 0%, #ffe9f2 100%);
+  --time-card-shadow: inset 0 -10px 18px rgba(203, 79, 125, 0.14), 0 14px 28px rgba(0, 0, 0, 0.24);
+  --chip-surface: linear-gradient(180deg, rgba(82, 35, 75, 0.84), rgba(49, 22, 45, 0.74));
+  --button-surface: rgba(70, 31, 64, 0.88);
+  --page-background:
+    radial-gradient(circle at 12% 10%, rgba(255, 184, 215, 0.18), transparent 22%),
+    radial-gradient(circle at 88% 10%, rgba(239, 124, 167, 0.22), transparent 24%),
+    radial-gradient(circle at 68% 24%, rgba(173, 110, 214, 0.16), transparent 22%),
+    radial-gradient(circle at 18% 84%, rgba(84, 23, 73, 0.24), transparent 24%),
+    linear-gradient(180deg, #38182f 0%, #45203c 36%, #2a1324 100%);
+  --system-scrim: linear-gradient(180deg, rgba(17, 5, 15, 0.44) 0%, rgba(33, 10, 29, 0.16) 58%, rgba(56, 24, 47, 0) 100%);
+  --startup-background:
+    radial-gradient(circle at top, rgba(239, 124, 167, 0.18), transparent 26%),
+    linear-gradient(180deg, #43203a 0%, #29121f 100%);
+  --startup-mark-surface: rgba(77, 35, 70, 0.92);
+  --menu-surface: linear-gradient(180deg, rgba(77, 34, 70, 0.96), rgba(42, 19, 38, 0.92));
+  --menu-item-surface: rgba(225, 144, 186, 0.18);
+  --menu-group-surface: rgba(186, 107, 155, 0.2);
+  --menu-mode-surface: rgba(214, 134, 176, 0.22);
+  --menu-icon: rgba(255, 238, 245, 0.82);
+  --utility-button-surface: rgba(76, 34, 69, 0.9);
+  --utility-button-shadow: inset 0 0 0 1px rgba(255, 220, 236, 0.08), 0 10px 20px rgba(19, 4, 16, 0.28);
+  --session-strip-surface: linear-gradient(180deg, rgba(80, 35, 74, 0.72), rgba(48, 21, 43, 0.56));
+  --progress-track: rgba(255, 230, 240, 0.12);
+  --dial-shadow: 0 20px 42px rgba(14, 3, 13, 0.36), inset 0 0 0 1px rgba(255, 223, 237, 0.08);
+  --text-inverse: #fff3fa;
+  --text-inverse-soft: rgba(255, 236, 246, 0.72);
+  --dial-separator: rgba(255, 236, 246, 0.34);
+  --metric-caption: rgba(236, 201, 220, 0.86);
+  --nav-surface: linear-gradient(180deg, rgba(68, 30, 62, 0.96), rgba(40, 18, 36, 0.9));
+  --nav-active-surface: linear-gradient(180deg, rgba(239, 124, 167, 0.24), rgba(255, 255, 255, 0.08));
+}
+
+body[data-ambience="dusk"] {
+  --bg: #1a2136;
+  --surface: rgba(31, 43, 72, 0.82);
+  --surface-strong: rgba(36, 50, 83, 0.94);
+  --surface-soft: rgba(163, 177, 255, 0.18);
+  --line: rgba(222, 229, 255, 0.14);
+  --line-strong: rgba(222, 229, 255, 0.2);
+  --text: #f4f6ff;
+  --muted: #b8c3ea;
+  --accent: #f29b7a;
+  --accent-deep: #dd7051;
+  --accent-soft: rgba(242, 155, 122, 0.18);
+  --success-soft: rgba(112, 193, 159, 0.18);
+  --success-text: #c4efdf;
+  --warning-soft: rgba(255, 206, 132, 0.22);
+  --warning-text: #ffe4b2;
+  --shadow: 0 22px 52px rgba(8, 12, 24, 0.34);
+  --topband-surface: linear-gradient(180deg, rgba(48, 62, 102, 0.72), rgba(27, 35, 58, 0.42));
+  --topband-glow:
+    radial-gradient(circle at 22% 46%, rgba(241, 244, 255, 0.16), transparent 24%),
+    radial-gradient(circle at 80% 42%, rgba(242, 155, 122, 0.28), transparent 36%),
+    radial-gradient(circle at 58% 18%, rgba(134, 151, 247, 0.18), transparent 30%);
+  --timer-panel-surface: linear-gradient(180deg, rgba(41, 55, 91, 0.94), rgba(24, 32, 55, 0.86));
+  --timer-panel-glow:
+    radial-gradient(circle at top right, rgba(242, 155, 122, 0.22), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.06), transparent 34%);
+  --dial-shell:
+    conic-gradient(var(--accent) calc(var(--progress) * 1turn), rgba(225, 232, 255, 0.1) 0),
+    radial-gradient(circle at center, rgba(225, 232, 255, 0.14) 0 55%, transparent 55%);
+  --dial-core:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, #17213b, #222c4b);
+  --dial-halo: radial-gradient(circle, rgba(242, 155, 122, 0.26) 0%, rgba(221, 112, 81, 0.14) 34%, rgba(255, 255, 255, 0.04) 52%, transparent 72%);
+  --dial-halo-outer: radial-gradient(circle, rgba(248, 220, 207, 0.12) 0%, rgba(242, 155, 122, 0.12) 42%, transparent 72%);
+  --time-card-surface: linear-gradient(180deg, #fffdfa 0%, #fff1ea 100%);
+  --time-card-shadow: inset 0 -10px 18px rgba(221, 112, 81, 0.14), 0 14px 28px rgba(0, 0, 0, 0.24);
+  --chip-surface: linear-gradient(180deg, rgba(48, 62, 102, 0.84), rgba(28, 35, 60, 0.74));
+  --button-surface: rgba(42, 54, 88, 0.88);
+  --page-background:
+    radial-gradient(circle at 12% 10%, rgba(182, 194, 255, 0.18), transparent 22%),
+    radial-gradient(circle at 88% 10%, rgba(242, 155, 122, 0.18), transparent 24%),
+    radial-gradient(circle at 68% 24%, rgba(126, 146, 241, 0.16), transparent 22%),
+    radial-gradient(circle at 18% 84%, rgba(46, 58, 104, 0.24), transparent 24%),
+    linear-gradient(180deg, #1d2641 0%, #253258 36%, #141c30 100%);
+  --system-scrim: linear-gradient(180deg, rgba(8, 12, 24, 0.42) 0%, rgba(17, 24, 43, 0.16) 58%, rgba(29, 38, 65, 0) 100%);
+  --startup-background:
+    radial-gradient(circle at top, rgba(242, 155, 122, 0.16), transparent 26%),
+    linear-gradient(180deg, #233055 0%, #151d34 100%);
+  --startup-mark-surface: rgba(46, 60, 98, 0.92);
+  --menu-surface: linear-gradient(180deg, rgba(43, 56, 91, 0.96), rgba(24, 31, 52, 0.92));
+  --menu-item-surface: rgba(169, 184, 255, 0.16);
+  --menu-group-surface: rgba(125, 143, 214, 0.18);
+  --menu-mode-surface: rgba(153, 169, 235, 0.2);
+  --menu-icon: rgba(244, 247, 255, 0.82);
+  --utility-button-surface: rgba(44, 56, 91, 0.9);
+  --utility-button-shadow: inset 0 0 0 1px rgba(236, 241, 255, 0.08), 0 10px 20px rgba(7, 10, 20, 0.28);
+  --session-strip-surface: linear-gradient(180deg, rgba(46, 60, 98, 0.72), rgba(26, 34, 58, 0.56));
+  --progress-track: rgba(231, 236, 255, 0.12);
+  --dial-shadow: 0 20px 42px rgba(7, 10, 20, 0.36), inset 0 0 0 1px rgba(239, 243, 255, 0.08);
+  --text-inverse: #f6f8ff;
+  --text-inverse-soft: rgba(241, 244, 255, 0.72);
+  --dial-separator: rgba(241, 244, 255, 0.34);
+  --metric-caption: rgba(203, 212, 241, 0.86);
+  --nav-surface: linear-gradient(180deg, rgba(38, 49, 80, 0.96), rgba(23, 29, 49, 0.9));
+  --nav-active-surface: linear-gradient(180deg, rgba(242, 155, 122, 0.24), rgba(255, 255, 255, 0.08));
+}
+
+body[data-ambience="pearl"] {
+  --bg: #ece7e3;
+  --surface: rgba(255, 253, 250, 0.84);
+  --surface-strong: rgba(255, 255, 253, 0.95);
+  --surface-soft: rgba(255, 255, 255, 0.6);
+  --line: rgba(56, 42, 38, 0.08);
+  --line-strong: rgba(56, 42, 38, 0.14);
+  --text: #231b18;
+  --muted: #84756f;
+  --accent: #9e8ecf;
+  --accent-deep: #6e5fa6;
+  --accent-soft: rgba(158, 142, 207, 0.16);
+  --success-soft: rgba(100, 174, 146, 0.16);
+  --success-text: #3f7d61;
+  --warning-soft: rgba(224, 184, 122, 0.18);
+  --warning-text: #9f6c23;
+  --shadow: 0 20px 50px rgba(97, 78, 69, 0.12);
+  --topband-surface: linear-gradient(180deg, rgba(255, 255, 252, 0.64), rgba(247, 241, 236, 0.28));
+  --topband-glow:
+    radial-gradient(circle at 20% 48%, rgba(255, 255, 255, 0.98), transparent 24%),
+    radial-gradient(circle at 80% 42%, rgba(158, 142, 207, 0.2), transparent 36%),
+    radial-gradient(circle at 56% 18%, rgba(246, 190, 170, 0.16), transparent 30%);
+  --timer-panel-surface: linear-gradient(180deg, rgba(255, 255, 253, 0.96), rgba(248, 242, 238, 0.88));
+  --timer-panel-glow:
+    radial-gradient(circle at top right, rgba(158, 142, 207, 0.14), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.8), transparent 34%);
+  --dial-shell:
+    conic-gradient(var(--accent) calc(var(--progress) * 1turn), rgba(69, 55, 48, 0.08) 0),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.62) 0 55%, transparent 55%);
+  --dial-core:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, #2a2220, #362d29);
+  --dial-halo: radial-gradient(circle, rgba(158, 142, 207, 0.18) 0%, rgba(246, 190, 170, 0.12) 34%, rgba(255, 255, 255, 0.08) 52%, transparent 72%);
+  --dial-halo-outer: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(158, 142, 207, 0.08) 42%, transparent 72%);
+  --time-card-surface: linear-gradient(180deg, #fffefd 0%, #fff8f4 100%);
+  --time-card-shadow: inset 0 -10px 18px rgba(190, 174, 220, 0.14), 0 14px 28px rgba(34, 24, 19, 0.14);
+  --chip-surface: linear-gradient(180deg, rgba(255, 255, 253, 0.88), rgba(247, 241, 236, 0.72));
+  --button-surface: rgba(255, 255, 253, 0.82);
+  --page-background:
+    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.96), transparent 24%),
+    radial-gradient(circle at 88% 10%, rgba(240, 213, 203, 0.22), transparent 20%),
+    radial-gradient(circle at 68% 24%, rgba(207, 198, 235, 0.16), transparent 24%),
+    radial-gradient(circle at 18% 84%, rgba(250, 231, 223, 0.22), transparent 24%),
+    linear-gradient(180deg, #f8f3ef 0%, #f0ebe7 38%, #e8e1db 100%);
+  --system-scrim: linear-gradient(180deg, rgba(36, 27, 24, 0.18) 0%, rgba(73, 56, 49, 0.08) 58%, rgba(248, 243, 239, 0) 100%);
+  --startup-background:
+    radial-gradient(circle at top, rgba(158, 142, 207, 0.14), transparent 26%),
+    linear-gradient(180deg, #f6f1ec 0%, #ede5df 100%);
+  --startup-mark-surface: rgba(255, 255, 255, 0.84);
+  --menu-surface: linear-gradient(180deg, rgba(255, 255, 253, 0.96), rgba(247, 241, 236, 0.92));
+  --menu-item-surface: rgba(255, 255, 255, 0.68);
+  --menu-group-surface: rgba(255, 252, 250, 0.68);
+  --menu-mode-surface: rgba(255, 255, 255, 0.72);
+  --menu-icon: rgba(35, 27, 24, 0.7);
+  --utility-button-surface: rgba(255, 255, 255, 0.88);
+  --utility-button-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.58), 0 10px 20px rgba(97, 78, 69, 0.08);
+  --session-strip-surface: linear-gradient(180deg, rgba(255, 255, 253, 0.48), rgba(249, 244, 239, 0.28));
+  --progress-track: rgba(56, 42, 38, 0.08);
+  --dial-shadow: 0 18px 38px rgba(97, 78, 69, 0.14), inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+  --text-inverse: #fff8f1;
+  --text-inverse-soft: rgba(255, 248, 241, 0.68);
+  --dial-separator: rgba(255, 248, 241, 0.42);
+  --metric-caption: rgba(132, 117, 111, 0.9);
+  --nav-surface: linear-gradient(180deg, rgba(255, 255, 253, 0.94), rgba(247, 241, 236, 0.84));
+  --nav-active-surface: linear-gradient(180deg, rgba(158, 142, 207, 0.18), rgba(255, 255, 255, 0.42));
+}
+
+body[data-ambience="ember"] {
+  --bg: #271615;
+  --surface: rgba(48, 27, 24, 0.84);
+  --surface-strong: rgba(57, 32, 28, 0.95);
+  --surface-soft: rgba(255, 186, 140, 0.18);
+  --line: rgba(255, 221, 197, 0.14);
+  --line-strong: rgba(255, 221, 197, 0.2);
+  --text: #fff3eb;
+  --muted: #d7b3a0;
+  --accent: #ff8b5e;
+  --accent-deep: #d9562f;
+  --accent-soft: rgba(255, 139, 94, 0.2);
+  --success-soft: rgba(127, 187, 131, 0.18);
+  --success-text: #d5f1cc;
+  --warning-soft: rgba(255, 204, 125, 0.22);
+  --warning-text: #ffe4b0;
+  --shadow: 0 22px 52px rgba(14, 7, 7, 0.38);
+  --topband-surface: linear-gradient(180deg, rgba(79, 45, 37, 0.76), rgba(37, 21, 19, 0.44));
+  --topband-glow:
+    radial-gradient(circle at 20% 48%, rgba(255, 244, 238, 0.16), transparent 24%),
+    radial-gradient(circle at 80% 42%, rgba(255, 139, 94, 0.34), transparent 36%),
+    radial-gradient(circle at 56% 18%, rgba(255, 190, 101, 0.18), transparent 30%);
+  --timer-panel-surface: linear-gradient(180deg, rgba(70, 39, 34, 0.94), rgba(39, 23, 20, 0.88));
+  --timer-panel-glow:
+    radial-gradient(circle at top right, rgba(255, 139, 94, 0.28), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(255, 247, 241, 0.05), transparent 34%);
+  --dial-shell:
+    conic-gradient(var(--accent) calc(var(--progress) * 1turn), rgba(255, 225, 208, 0.1) 0),
+    radial-gradient(circle at center, rgba(255, 214, 189, 0.14) 0 55%, transparent 55%);
+  --dial-core:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, #221513, #311d1a);
+  --dial-halo: radial-gradient(circle, rgba(255, 139, 94, 0.34) 0%, rgba(217, 86, 47, 0.16) 34%, rgba(255, 255, 255, 0.04) 52%, transparent 72%);
+  --dial-halo-outer: radial-gradient(circle, rgba(255, 224, 204, 0.12) 0%, rgba(255, 139, 94, 0.12) 42%, transparent 72%);
+  --time-card-surface: linear-gradient(180deg, #fffaf6 0%, #ffece1 100%);
+  --time-card-shadow: inset 0 -10px 18px rgba(217, 86, 47, 0.16), 0 14px 28px rgba(0, 0, 0, 0.26);
+  --chip-surface: linear-gradient(180deg, rgba(81, 45, 38, 0.84), rgba(43, 24, 21, 0.76));
+  --button-surface: rgba(72, 40, 34, 0.9);
+  --page-background:
+    radial-gradient(circle at 12% 10%, rgba(255, 194, 163, 0.18), transparent 22%),
+    radial-gradient(circle at 88% 10%, rgba(255, 139, 94, 0.22), transparent 24%),
+    radial-gradient(circle at 68% 24%, rgba(255, 195, 99, 0.16), transparent 22%),
+    radial-gradient(circle at 18% 84%, rgba(85, 33, 27, 0.26), transparent 24%),
+    linear-gradient(180deg, #2b1714 0%, #351c18 38%, #1f110f 100%);
+  --system-scrim: linear-gradient(180deg, rgba(17, 8, 8, 0.46) 0%, rgba(31, 16, 13, 0.18) 58%, rgba(43, 23, 20, 0) 100%);
+  --startup-background:
+    radial-gradient(circle at top, rgba(255, 139, 94, 0.18), transparent 26%),
+    linear-gradient(180deg, #341c17 0%, #20110f 100%);
+  --startup-mark-surface: rgba(76, 42, 36, 0.92);
+  --menu-surface: linear-gradient(180deg, rgba(77, 43, 36, 0.96), rgba(40, 23, 20, 0.92));
+  --menu-item-surface: rgba(255, 192, 150, 0.16);
+  --menu-group-surface: rgba(215, 123, 82, 0.18);
+  --menu-mode-surface: rgba(255, 170, 126, 0.18);
+  --menu-icon: rgba(255, 238, 229, 0.82);
+  --utility-button-surface: rgba(76, 42, 36, 0.92);
+  --utility-button-shadow: inset 0 0 0 1px rgba(255, 227, 211, 0.08), 0 10px 20px rgba(13, 7, 7, 0.3);
+  --session-strip-surface: linear-gradient(180deg, rgba(78, 44, 37, 0.72), rgba(42, 24, 20, 0.58));
+  --progress-track: rgba(255, 228, 214, 0.12);
+  --dial-shadow: 0 20px 42px rgba(12, 7, 7, 0.38), inset 0 0 0 1px rgba(255, 229, 215, 0.08);
+  --text-inverse: #fff4ee;
+  --text-inverse-soft: rgba(255, 238, 229, 0.72);
+  --dial-separator: rgba(255, 239, 230, 0.34);
+  --metric-caption: rgba(227, 196, 180, 0.86);
+  --nav-surface: linear-gradient(180deg, rgba(72, 40, 34, 0.96), rgba(39, 22, 19, 0.9));
+  --nav-active-surface: linear-gradient(180deg, rgba(255, 139, 94, 0.24), rgba(255, 255, 255, 0.08));
 }
 
 body::before {
@@ -141,8 +571,7 @@ body::before {
   right: 0;
   z-index: 6;
   height: calc(env(safe-area-inset-top) + 36px);
-  background:
-    linear-gradient(180deg, rgba(22, 18, 16, 0.24) 0%, rgba(56, 36, 26, 0.12) 58%, rgba(255, 247, 241, 0) 100%);
+  background: var(--system-scrim);
   pointer-events: none;
 }
 
@@ -175,9 +604,7 @@ textarea {
   place-items: center;
   align-content: center;
   gap: 18px;
-  background:
-    radial-gradient(circle at top, rgba(242, 106, 75, 0.15), transparent 26%),
-    linear-gradient(180deg, #f8f1e9 0%, #f2e8dc 100%);
+  background: var(--startup-background);
   transition: opacity 420ms ease, visibility 420ms ease;
   animation: startup-fallback-hide 0.01s linear 2.35s forwards;
 }
@@ -194,7 +621,7 @@ textarea {
   border-radius: 30px;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.78);
+  background: var(--startup-mark-surface);
   box-shadow: var(--shadow);
 }
 
@@ -307,8 +734,7 @@ textarea {
   width: min(232px, calc(100vw - 44px));
   padding: 12px;
   border-radius: 24px;
-  background:
-    linear-gradient(180deg, rgba(255, 252, 248, 0.95), rgba(255, 247, 241, 0.88));
+  background: var(--menu-surface);
   border: 1px solid rgba(39, 27, 20, 0.08);
   box-shadow: 0 20px 44px rgba(78, 53, 35, 0.16);
   backdrop-filter: blur(18px);
@@ -327,14 +753,14 @@ textarea {
   align-items: center;
   gap: 12px;
   color: var(--text);
-  background: rgba(255, 255, 255, 0.52);
+  background: var(--menu-item-surface);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
 
 .menu-item .material-symbols-rounded,
 .menu-group-head .material-symbols-rounded {
   font-size: 1.1rem;
-  color: rgba(23, 19, 17, 0.72);
+  color: var(--menu-icon);
 }
 
 .menu-item + .menu-item,
@@ -344,7 +770,7 @@ textarea {
 
 .menu-group {
   padding: 12px;
-  background: rgba(255, 255, 255, 0.48);
+  background: var(--menu-group-surface);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34);
 }
 
@@ -359,7 +785,7 @@ textarea {
 
 .menu-modes {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 7px;
   margin-top: 10px;
 }
@@ -369,9 +795,9 @@ textarea {
   padding: 0 12px;
   border-radius: 14px;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.66);
+  background: var(--menu-mode-surface);
   box-shadow: inset 0 0 0 1px rgba(39, 27, 20, 0.06);
-  text-align: left;
+  text-align: center;
   font-weight: 700;
 }
 
@@ -417,8 +843,7 @@ textarea {
   margin-top: 14px;
   padding: 14px 16px 16px;
   border-radius: 20px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 249, 242, 0.24));
+  background: var(--session-strip-surface);
   border: 1px solid rgba(39, 27, 20, 0.04);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.38);
 }
@@ -441,7 +866,7 @@ textarea {
   height: 7px;
   margin-top: 12px;
   border-radius: 999px;
-  background: rgba(39, 27, 20, 0.08);
+  background: var(--progress-track);
   overflow: hidden;
 }
 
@@ -518,7 +943,7 @@ textarea {
   position: relative;
   z-index: 1;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(39, 27, 20, 0.08);
+  border-bottom: 1px solid var(--line);
 }
 
 .utility-meta {
@@ -547,11 +972,9 @@ textarea {
   border-radius: 17px;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.84);
+  background: var(--utility-button-surface);
   color: var(--text);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.58),
-    0 10px 20px rgba(78, 53, 35, 0.08);
+  box-shadow: var(--utility-button-shadow);
 }
 
 .utility-button--accent {
@@ -617,9 +1040,7 @@ textarea {
   display: grid;
   place-items: center;
   background: var(--dial-shell);
-  box-shadow:
-    0 18px 38px rgba(78, 53, 35, 0.14),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+  box-shadow: var(--dial-shadow);
   animation: breathe 4.2s ease-in-out infinite;
 }
 
@@ -643,7 +1064,7 @@ textarea {
   align-content: center;
   gap: 12px;
   background: var(--dial-core);
-  color: #fff8f1;
+  color: var(--text-inverse);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
@@ -675,13 +1096,13 @@ textarea {
 .time-separator {
   font-family: "Sora", sans-serif;
   font-size: 2.3rem;
-  color: rgba(255, 248, 241, 0.42);
+  color: var(--dial-separator);
   transform: translateY(-4px);
 }
 
 .session-label {
   margin: 0;
-  color: rgba(255, 248, 241, 0.68);
+  color: var(--text-inverse-soft);
   font-size: 0.95rem;
   font-weight: 600;
 }
@@ -731,7 +1152,7 @@ textarea {
 .metric-caption {
   display: block;
   margin-top: 8px;
-  color: rgba(116, 104, 95, 0.9);
+  color: var(--metric-caption);
   font-size: 0.8rem;
 }
 
@@ -1152,8 +1573,7 @@ textarea {
   gap: 4px;
   padding: 7px;
   border-radius: 24px;
-  background:
-    linear-gradient(180deg, rgba(255, 252, 248, 0.92), rgba(255, 248, 242, 0.78));
+  background: var(--nav-surface);
   border: 1px solid rgba(39, 27, 20, 0.08);
   box-shadow: 0 18px 44px rgba(78, 53, 35, 0.14);
   backdrop-filter: blur(22px);
@@ -1178,8 +1598,7 @@ textarea {
 
 .nav-item.is-active {
   color: var(--text);
-  background:
-    linear-gradient(180deg, rgba(242, 106, 75, 0.18), rgba(255, 255, 255, 0.42));
+  background: var(--nav-active-surface);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.48);
 }
 

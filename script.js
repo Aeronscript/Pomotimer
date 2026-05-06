@@ -1,5 +1,15 @@
-const WEB_APP_VERSION = "1.2.22";
-const NATIVE_STATUS_BAR_COLOR = "#FFF7F1";
+const WEB_APP_VERSION = "1.2.23";
+const AMBIENCE_THEMES = {
+  focus: { metaColor: "#fff7f1", statusStyle: "DARK" },
+  calm: { metaColor: "#fbf2ea", statusStyle: "DARK" },
+  soft: { metaColor: "#fff8f2", statusStyle: "DARK" },
+  midnight: { metaColor: "#15161f", statusStyle: "LIGHT" },
+  lagoon: { metaColor: "#103841", statusStyle: "LIGHT" },
+  berry: { metaColor: "#3a1d34", statusStyle: "LIGHT" },
+  dusk: { metaColor: "#1d2741", statusStyle: "LIGHT" },
+  pearl: { metaColor: "#ece7e3", statusStyle: "DARK" },
+  ember: { metaColor: "#2a1714", statusStyle: "LIGHT" }
+};
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
     ? window.location.origin
@@ -111,7 +121,7 @@ function readStorage(key) {
 
 function readAmbienceMode() {
   const storedMode = window.localStorage.getItem(AMBIENCE_STORAGE_KEY);
-  return ["focus", "calm", "soft"].includes(storedMode) ? storedMode : "focus";
+  return Object.hasOwn(AMBIENCE_THEMES, storedMode) ? storedMode : "focus";
 }
 
 function writeStorage(key, value) {
@@ -278,17 +288,19 @@ async function applyNativeStatusBarTheme() {
     return;
   }
 
+  const theme = AMBIENCE_THEMES[ambienceMode] || AMBIENCE_THEMES.focus;
+
   try {
     if (typeof statusBarPlugin.setOverlaysWebView === "function") {
       await statusBarPlugin.setOverlaysWebView({ overlay: false });
     }
 
     if (typeof statusBarPlugin.setBackgroundColor === "function") {
-      await statusBarPlugin.setBackgroundColor({ color: NATIVE_STATUS_BAR_COLOR });
+      await statusBarPlugin.setBackgroundColor({ color: theme.metaColor });
     }
 
     if (typeof statusBarPlugin.setStyle === "function") {
-      await statusBarPlugin.setStyle({ style: "DARK" });
+      await statusBarPlugin.setStyle({ style: theme.statusStyle });
     }
 
     if (typeof statusBarPlugin.show === "function") {
@@ -532,14 +544,19 @@ function renderSessionMeta() {
 }
 
 function renderAmbienceMode() {
+  const theme = AMBIENCE_THEMES[ambienceMode] || AMBIENCE_THEMES.focus;
   document.body.dataset.ambience = ambienceMode;
   menuModeButtons.forEach((button) => {
     button.classList.toggle("is-active", button.dataset.mode === ambienceMode);
   });
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute("content", theme.metaColor);
+  applyNativeStatusBarTheme();
 }
 
 function setAmbienceMode(mode) {
-  if (!["focus", "calm", "soft"].includes(mode)) {
+  if (!Object.hasOwn(AMBIENCE_THEMES, mode)) {
     return;
   }
 
