@@ -1,7 +1,7 @@
 {
-  "latestVersion": "1.2.27",
-  "versionCode": 30,
-  "releasedAt": "2026-05-06T19:58:10.429Z",
+  "latestVersion": "1.2.28",
+  "versionCode": 31,
+  "releasedAt": "2026-05-06T20:04:07.969Z",
   "message": "Timeralpha fond mieux ses sections et supprime l'effet de plaque autour des blocs.",
   "apkPath": "/downloads/timeralpha-release.apk",
   "notes": [

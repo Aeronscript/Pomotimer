@@ -911,6 +911,7 @@ textarea {
     inset 0 0 0 1px var(--glass-stroke),
     var(--glass-shadow-soft);
   position: relative;
+  z-index: 18;
   isolation: isolate;
 }
 
