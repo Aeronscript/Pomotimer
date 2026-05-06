@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.17";
+const WEB_APP_VERSION = "1.2.18";
 const NATIVE_STATUS_BAR_COLOR = "#FFF7F1";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")

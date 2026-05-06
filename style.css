@@ -328,6 +328,7 @@ textarea {
   font-size: 1.35rem;
 }
 
+.top-menu.is-hidden,
 .update-fab.is-hidden,
 .update-banner.is-hidden,
 .modal.is-hidden {

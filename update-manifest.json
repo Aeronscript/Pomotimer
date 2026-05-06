@@ -1,12 +1,12 @@
 {
-  "latestVersion": "1.2.17",
-  "versionCode": 20,
-  "releasedAt": "2026-05-06T17:20:14.908Z",
-  "message": "Timeralpha force maintenant la disparition du splash et renouvelle le shell mis en cache.",
+  "latestVersion": "1.2.18",
+  "versionCode": 21,
+  "releasedAt": "2026-05-06T17:28:42.645Z",
+  "message": "Timeralpha corrige l'affichage du menu rapide sur le web et dans l'app.",
   "apkPath": "/downloads/timeralpha-release.apk",
   "notes": [
-    "Splash masque automatiquement meme si le script principal echoue",
-    "Cache service worker renouvele",
-    "Ajustements du haut d'ecran et de la navigation basse conserves"
+    "Menu rapide masque correctement par defaut",
+    "Meme front stabilise sur web et dans l'app",
+    "Correctifs precedents du splash conserves"
   ]
 }
