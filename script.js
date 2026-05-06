@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.3";
+const WEB_APP_VERSION = "1.2.4";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
     ? window.location.origin
@@ -615,7 +615,7 @@ function renderUpdateState() {
   updateBanner.classList.toggle("is-hidden", !needsUpdate);
 
   if (needsUpdate) {
-    updateBannerText.textContent = `Pomotimer ${latestUpdate.latestVersion} est pret.`;
+    updateBannerText.textContent = `Une nouvelle version ${latestUpdate.latestVersion} est disponible. Veuillez la mettre a jour.`;
     updateStatusText.textContent = `Une mise a jour vers ${latestUpdate.latestVersion} est disponible.`;
   } else {
     latestVersionValue.textContent = currentVersion;

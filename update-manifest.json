@@ -1,8 +1,8 @@
 {
-  "latestVersion": "1.2.3",
-  "versionCode": 6,
-  "releasedAt": "2026-05-06T13:26:23.325Z",
-  "message": "Une nouvelle version avec bouton de telechargement direct et nouveau logo est disponible.",
+  "latestVersion": "1.2.4",
+  "versionCode": 7,
+  "releasedAt": "2026-05-06T13:36:07.109Z",
+  "message": "Une nouvelle version avec halo lumineux discret et bandeau de mise a jour plus visible est disponible.",
   "apkPath": "/downloads/pomotimer-release.apk",
   "notes": [
     "Interface plus minimaliste et mieux alignee",
@@ -11,6 +11,8 @@
     "APK alignee sur le design actuel",
     "Page de telechargement Vercel synchronisee avec les releases",
     "Bouton visible pour telecharger la derniere version",
-    "Logo retravaille"
+    "Logo retravaille",
+    "Halo lumineux discret autour du cercle",
+    "Bandeau de mise a jour plus visible"
   ]
 }
