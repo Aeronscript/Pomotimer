@@ -864,18 +864,21 @@ textarea {
 }
 
 .startup-mark {
-  width: 108px;
-  height: 108px;
+  width: min(248px, 66vw);
+  height: auto;
+  min-height: 88px;
   border-radius: 30px;
   display: grid;
   place-items: center;
   background: var(--startup-mark-surface);
   box-shadow: var(--shadow);
+  padding: 18px 20px;
 }
 
 .startup-mark img {
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  height: auto;
+  opacity: 0.94;
 }
 
 .startup-title {

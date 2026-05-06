@@ -10,7 +10,7 @@ const filesToCopy = [
   "manifest.webmanifest",
   "sw.js"
 ];
-const directoriesToCopy = ["icons"];
+const directoriesToCopy = ["icons", "assets"];
 
 function ensureDir(dirPath) {
   fs.mkdirSync(dirPath, { recursive: true });
