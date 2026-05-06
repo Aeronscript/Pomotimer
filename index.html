@@ -41,9 +41,10 @@
               <div class="topband-mark">
                 <img src="icons/icon.svg" alt="" />
               </div>
-              <div>
+              <div class="topband-copy">
                 <p class="topband-eyebrow">Timeralpha</p>
-                <h1 class="topband-title">Focus calme, rythme net.</h1>
+                <h1 class="topband-title">Clarte calme, cadence nette.</h1>
+                <p class="topband-copyline">Un minuteur plus net, des cycles lisibles, une vraie presence mobile.</p>
               </div>
             </div>
             <div class="topband-actions">
@@ -70,7 +71,7 @@
             <div class="utility-row">
               <div class="utility-meta">
                 <span class="utility-kicker">Session active</span>
-                <p class="utility-caption">Ton minuteur principal reste au centre.</p>
+                <p id="sessionMetaText" class="utility-caption">Cycle focus 20 min, pause 5 min.</p>
               </div>
               <span id="phaseBadge" class="phase-badge">FOCUS</span>
             </div>
@@ -96,10 +97,12 @@
               <article class="metric-card">
                 <span class="metric-label">Round</span>
                 <strong id="roundCount" class="metric-value">0/4</strong>
+                <span class="metric-caption">Cycle court en cours</span>
               </article>
               <article class="metric-card">
                 <span class="metric-label">Goal</span>
                 <strong id="goalCount" class="metric-value">0/12</strong>
+                <span class="metric-caption">Objectif global vise</span>
               </article>
             </div>
 
@@ -150,16 +153,16 @@
             <div class="section-head section-head--stack">
               <div>
                 <h2>Historique</h2>
-                <p class="section-copy">Retrouve tes sessions recentes avec un resume plus lisible.</p>
+                <p class="section-copy">Une lecture plus propre de tes cycles termines, sans surcharge.</p>
               </div>
             </div>
             <div class="summary-grid summary-grid--history">
               <article class="summary-card summary-card--warm">
-                <span class="summary-label">Sessions</span>
+                <span class="summary-label">Sessions focus</span>
                 <strong id="historyTotal" class="summary-value">0</strong>
               </article>
               <article class="summary-card summary-card--soft">
-                <span class="summary-label">Aujourd’hui</span>
+                <span class="summary-label">Aujourd'hui</span>
                 <strong id="historyToday" class="summary-value">0</strong>
               </article>
             </div>
@@ -180,7 +183,7 @@
             <div class="section-head section-head--stack">
               <div>
                 <h2>Notes</h2>
-                <p class="section-copy">Garde des idees rapides, propres et faciles a relire.</p>
+                <p class="section-copy">Capture tes idees sans casser le rythme, puis reviens-y proprement.</p>
               </div>
             </div>
             <div class="split-section">
@@ -226,7 +229,7 @@
             <div class="section-head section-head--stack">
               <div>
                 <h2>Reglages</h2>
-                <p class="section-copy">Version, serveur d’update et notifications dans un bloc plus net.</p>
+                <p class="section-copy">Tout ce qui concerne la version, les updates et les notifications, sans bruit.</p>
               </div>
             </div>
             <div class="settings-grid">
@@ -234,7 +237,7 @@
                 <div class="settings-pair">
                   <div>
                     <span class="settings-label">Version actuelle</span>
-                    <strong id="currentVersionValue" class="settings-value">1.2.13</strong>
+                    <strong id="currentVersionValue" class="settings-value">1.2.14</strong>
                   </div>
                   <div>
                     <span class="settings-label">Derniere detectee</span>

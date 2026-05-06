@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.12";
+const WEB_APP_VERSION = "1.2.14";
 const NATIVE_STATUS_BAR_COLOR = "#FFF7F1";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
@@ -63,6 +63,7 @@ const saveUpdateServerButton = document.getElementById("saveUpdateServerButton")
 const currentVersionValue = document.getElementById("currentVersionValue");
 const latestVersionValue = document.getElementById("latestVersionValue");
 const updateStatusText = document.getElementById("updateStatusText");
+const sessionMetaText = document.getElementById("sessionMetaText");
 const toast = document.getElementById("toast");
 
 const capacitor = window.Capacitor;
@@ -491,6 +492,19 @@ function renderStats() {
   goalCountEl.textContent = `${goals}/${MAX_GOALS}`;
 }
 
+function renderSessionMeta() {
+  if (!sessionMetaText) {
+    return;
+  }
+
+  if (phase === "focus") {
+    sessionMetaText.textContent = `Cycle focus ${selectedMinutes} min, pause ${breakMinutes} min ensuite.`;
+    return;
+  }
+
+  sessionMetaText.textContent = `Pause ${breakMinutes} min avant le retour sur ${selectedMinutes} min de focus.`;
+}
+
 function renderPhase() {
   phaseBadge.textContent = phase === "focus" ? "FOCUS" : "PAUSE";
   phaseBadge.classList.toggle("is-break", phase === "break");
@@ -875,6 +889,7 @@ function renderAll() {
   renderTime();
   renderStats();
   renderPhase();
+  renderSessionMeta();
   renderProgress();
   updatePresetState();
   syncTimerButtons();
