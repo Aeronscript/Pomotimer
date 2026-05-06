@@ -1,12 +1,11 @@
 {
-  "latestVersion": "1.2.6",
-  "versionCode": 9,
-  "releasedAt": "2026-05-06T14:04:58.063Z",
-  "message": "Une mise a jour plus propre est disponible.",
+  "latestVersion": "1.2.7",
+  "versionCode": 10,
+  "releasedAt": "2026-05-06T14:17:59.440Z",
+  "message": "Une correction visuelle de la barre du haut est disponible.",
   "apkPath": "/downloads/pomotimer-release.apk",
   "notes": [
-    "Historique retravaille et plus lisible",
-    "Fenetre de mise a jour defilante",
-    "Texte de mise a jour raccourci"
+    "Barre du haut harmonisee avec le fond",
+    "Chrome Android plus immersif"
   ]
 }
