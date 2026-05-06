@@ -1,4 +1,4 @@
-const CACHE_NAME = "timeralpha-v2";
+const CACHE_NAME = "timeralpha-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -41,7 +41,34 @@ self.addEventListener("fetch", (event) => {
 
   if (request.mode === "navigate") {
     event.respondWith(
-      fetch(request).catch(() => caches.match("./index.html"))
+      fetch(request)
+        .then((response) => {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put("./index.html", responseClone));
+          return response;
+        })
+        .catch(() => caches.match("./index.html"))
+    );
+    return;
+  }
+
+  const isDynamicAppAsset =
+    request.destination === "script" ||
+    request.destination === "style" ||
+    request.destination === "manifest" ||
+    requestUrl.pathname.endsWith(".js") ||
+    requestUrl.pathname.endsWith(".css") ||
+    requestUrl.pathname.endsWith(".webmanifest");
+
+  if (isDynamicAppAsset) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
+          return response;
+        })
+        .catch(() => caches.match(request))
     );
     return;
   }

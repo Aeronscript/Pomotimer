@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.20";
+const WEB_APP_VERSION = "1.2.21";
 const NATIVE_STATUS_BAR_COLOR = "#FFF7F1";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
@@ -756,6 +756,7 @@ function closeTopMenu() {
   topMenu?.classList.add("is-hidden");
   if (topMenu) {
     topMenu.hidden = true;
+    topMenu.style.display = "none";
   }
   menuToggleButton?.setAttribute("aria-expanded", "false");
 }
@@ -764,6 +765,7 @@ function toggleTopMenu() {
   isTopMenuOpen = !isTopMenuOpen;
   if (topMenu) {
     topMenu.hidden = !isTopMenuOpen;
+    topMenu.style.display = isTopMenuOpen ? "grid" : "none";
   }
   topMenu?.classList.toggle("is-hidden", !isTopMenuOpen);
   menuToggleButton?.setAttribute("aria-expanded", String(isTopMenuOpen));
@@ -1146,9 +1148,12 @@ async function init() {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js").catch((error) => {
-      console.error("Impossible d'enregistrer le service worker.", error);
-    });
+    navigator.serviceWorker
+      .register("sw.js")
+      .then((registration) => registration.update())
+      .catch((error) => {
+        console.error("Impossible d'enregistrer le service worker.", error);
+      });
   });
 }
 
