@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.4";
+const WEB_APP_VERSION = "1.2.5";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
     ? window.location.origin

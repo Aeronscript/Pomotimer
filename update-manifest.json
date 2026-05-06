@@ -1,8 +1,8 @@
 {
-  "latestVersion": "1.2.4",
-  "versionCode": 7,
-  "releasedAt": "2026-05-06T13:36:07.109Z",
-  "message": "Une nouvelle version avec halo lumineux discret et bandeau de mise a jour plus visible est disponible.",
+  "latestVersion": "1.2.5",
+  "versionCode": 8,
+  "releasedAt": "2026-05-06T13:51:04.740Z",
+  "message": "Une nouvelle version avec vues Notes et Reglages raffinees et barre du haut harmonisee est disponible.",
   "apkPath": "/downloads/pomotimer-release.apk",
   "notes": [
     "Interface plus minimaliste et mieux alignee",
@@ -13,6 +13,9 @@
     "Bouton visible pour telecharger la derniere version",
     "Logo retravaille",
     "Halo lumineux discret autour du cercle",
-    "Bandeau de mise a jour plus visible"
+    "Bandeau de mise a jour plus visible",
+    "Vues Notes et Reglages retouchees",
+    "Barre du haut harmonisee avec le fond chaud",
+    "Fond degrade orange, blanc et rouge plus present"
   ]
 }

@@ -1,6 +1,6 @@
 :root {
-  --bg: #f4ede4;
-  --bg-tint: #fff7f1;
+  --bg: #f5ebe1;
+  --bg-tint: #fff8f2;
   --surface: rgba(255, 252, 247, 0.78);
   --surface-strong: rgba(255, 251, 246, 0.92);
   --surface-soft: rgba(255, 255, 255, 0.54);
@@ -44,10 +44,11 @@ body {
   font-family: "Plus Jakarta Sans", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 28%),
-    radial-gradient(circle at 85% 10%, rgba(242, 106, 75, 0.16), transparent 18%),
-    radial-gradient(circle at 15% 85%, rgba(206, 183, 156, 0.22), transparent 22%),
-    linear-gradient(180deg, var(--bg-tint), var(--bg));
+    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.96), transparent 24%),
+    radial-gradient(circle at 88% 8%, rgba(242, 106, 75, 0.24), transparent 19%),
+    radial-gradient(circle at 68% 26%, rgba(227, 73, 55, 0.14), transparent 24%),
+    radial-gradient(circle at 18% 84%, rgba(249, 142, 83, 0.18), transparent 23%),
+    linear-gradient(180deg, #fff7f1 0%, #f9f1e8 32%, #f4e8dc 100%);
   overscroll-behavior-y: none;
 }
 
@@ -192,8 +193,8 @@ textarea {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at top right, rgba(242, 106, 75, 0.14), transparent 28%),
-    radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.6), transparent 32%);
+    radial-gradient(circle at top right, rgba(242, 106, 75, 0.18), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.68), transparent 32%);
   pointer-events: none;
 }
 
@@ -279,9 +280,9 @@ textarea {
   aspect-ratio: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(242, 106, 75, 0.16) 0%, rgba(242, 106, 75, 0.06) 34%, transparent 68%);
-  filter: blur(18px);
-  opacity: 0.7;
+    radial-gradient(circle, rgba(242, 106, 75, 0.24) 0%, rgba(242, 106, 75, 0.11) 34%, rgba(255, 255, 255, 0.06) 52%, transparent 72%);
+  filter: blur(22px);
+  opacity: 0.88;
   transform: translateY(-6px);
   pointer-events: none;
   animation: halo-pulse 4.8s ease-in-out infinite;
@@ -310,9 +311,9 @@ textarea {
   inset: -10px;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(242, 106, 75, 0.08) 42%, transparent 72%);
-  filter: blur(14px);
-  opacity: 0.42;
+    radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, rgba(242, 106, 75, 0.12) 42%, transparent 72%);
+  filter: blur(16px);
+  opacity: 0.58;
   pointer-events: none;
 }
 
@@ -477,6 +478,17 @@ textarea {
   letter-spacing: -0.03em;
 }
 
+.section-head--stack {
+  align-items: flex-start;
+}
+
+.section-copy {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.45;
+  font-size: 0.92rem;
+}
+
 .preset-stack {
   display: grid;
   gap: 14px;
@@ -568,6 +580,65 @@ textarea {
   margin-top: 14px;
 }
 
+.split-section,
+.settings-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.notes-form--card,
+.list-panel,
+.settings-card--form,
+.settings-card--status,
+.settings-card--hero {
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.mini-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mini-head h3 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  font-size: 0.98rem;
+  letter-spacing: -0.02em;
+}
+
+.mini-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(242, 106, 75, 0.12);
+  color: var(--accent-deep);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mini-badge--soft {
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted);
+}
+
+.settings-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
 .field {
   display: grid;
   gap: 8px;
@@ -657,6 +728,15 @@ textarea {
 .settings-actions {
   margin-top: 16px;
   flex-direction: column;
+}
+
+.settings-card--hero .settings-value {
+  font-size: 1.64rem;
+}
+
+.settings-card--status .settings-copy {
+  margin-top: 10px;
+  font-size: 0.96rem;
 }
 
 .bottom-nav {
@@ -870,6 +950,10 @@ button:active,
 
   .nav-item {
     font-size: 0.68rem;
+  }
+
+  .settings-pair {
+    grid-template-columns: 1fr;
   }
 }
 

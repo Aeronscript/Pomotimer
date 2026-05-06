@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Pomotimer</title>
-    <meta name="theme-color" content="#efe8de" />
+    <meta name="theme-color" content="#f7eee6" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Pomotimer" />
@@ -152,74 +152,106 @@
 
         <section id="notesView" class="view" aria-label="Notes">
           <div class="surface-card surface-card--tall">
-            <div class="section-head">
-              <h2>Notes</h2>
+            <div class="section-head section-head--stack">
+              <div>
+                <h2>Notes</h2>
+                <p class="section-copy">Garde des idees rapides, propres et faciles a relire.</p>
+              </div>
             </div>
-            <form id="notesForm" class="notes-form" novalidate>
-              <label class="field">
-                <span>Titre</span>
-                <input id="noteTitle" name="title" type="text" maxlength="60" required />
-              </label>
-              <label class="field">
-                <span>Statut</span>
-                <select id="noteStatus" name="status">
-                  <option value="En cours">En cours</option>
-                  <option value="En validation">En validation</option>
-                </select>
-              </label>
-              <label class="field">
-                <span>Contenu</span>
-                <textarea id="noteContent" name="content" rows="4" maxlength="240" required></textarea>
-              </label>
-              <p id="notesFeedback" class="feedback" aria-live="polite"></p>
-              <button class="primary-action primary-action--small" type="submit">Enregistrer</button>
-            </form>
-            <ul id="notesList" class="stack-list">
-              <li class="empty-state">Aucune note enregistree.</li>
-            </ul>
+            <div class="split-section">
+              <form id="notesForm" class="notes-form notes-form--card" novalidate>
+                <div class="mini-head">
+                  <h3>Nouvelle note</h3>
+                  <span class="mini-badge">Rapide</span>
+                </div>
+                <label class="field">
+                  <span>Titre</span>
+                  <input id="noteTitle" name="title" type="text" maxlength="60" required />
+                </label>
+                <label class="field">
+                  <span>Statut</span>
+                  <select id="noteStatus" name="status">
+                    <option value="En cours">En cours</option>
+                    <option value="En validation">En validation</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span>Contenu</span>
+                  <textarea id="noteContent" name="content" rows="4" maxlength="240" required></textarea>
+                </label>
+                <p id="notesFeedback" class="feedback" aria-live="polite"></p>
+                <button class="primary-action primary-action--small" type="submit">Enregistrer</button>
+              </form>
+
+              <div class="list-panel">
+                <div class="mini-head">
+                  <h3>Notes recentes</h3>
+                  <span class="mini-badge mini-badge--soft">Memo</span>
+                </div>
+                <ul id="notesList" class="stack-list">
+                  <li class="empty-state">Aucune note enregistree.</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
         <section id="settingsView" class="view" aria-label="Reglages">
           <div class="surface-card surface-card--tall">
-            <div class="section-head">
-              <h2>Reglages</h2>
+            <div class="section-head section-head--stack">
+              <div>
+                <h2>Reglages</h2>
+                <p class="section-copy">Version, serveur d’update et notifications dans un bloc plus net.</p>
+              </div>
             </div>
+            <div class="settings-grid">
+              <div class="settings-card settings-card--hero">
+                <div class="settings-pair">
+                  <div>
+                    <span class="settings-label">Version actuelle</span>
+                    <strong id="currentVersionValue" class="settings-value">1.2.5</strong>
+                  </div>
+                  <div>
+                    <span class="settings-label">Derniere detectee</span>
+                    <strong id="latestVersionValue" class="settings-value">-</strong>
+                  </div>
+                </div>
+              </div>
 
-            <div class="settings-card">
-              <span class="settings-label">Version actuelle</span>
-              <strong id="currentVersionValue" class="settings-value">1.2.4</strong>
-            </div>
+              <div class="settings-card settings-card--form">
+                <div class="mini-head">
+                  <h3>Mise a jour</h3>
+                  <span class="mini-badge mini-badge--soft">Vercel</span>
+                </div>
+                <label class="field">
+                  <span>Serveur de mise a jour</span>
+                  <input
+                    id="updateServerInput"
+                    type="url"
+                    placeholder="https://timeralpha.vercel.app"
+                    inputmode="url"
+                  />
+                </label>
 
-            <div class="settings-card">
-              <span class="settings-label">Derniere version detectee</span>
-              <strong id="latestVersionValue" class="settings-value">-</strong>
-            </div>
+                <div class="settings-actions">
+                  <button id="saveUpdateServerButton" class="secondary-action secondary-action--block" type="button">
+                    Enregistrer le serveur
+                  </button>
+                  <button id="notifyButton" class="secondary-action secondary-action--block" type="button">
+                    Activer les notifications
+                  </button>
+                </div>
+              </div>
 
-            <label class="field">
-              <span>Serveur de mise a jour</span>
-              <input
-                id="updateServerInput"
-                type="url"
-                placeholder="https://timeralpha.vercel.app"
-                inputmode="url"
-              />
-            </label>
-
-            <div class="settings-actions">
-              <button id="saveUpdateServerButton" class="secondary-action secondary-action--block" type="button">
-                Enregistrer le serveur
-              </button>
-              <button id="notifyButton" class="secondary-action secondary-action--block" type="button">
-                Activer les notifications
-              </button>
-            </div>
-
-            <div class="settings-card">
-              <span class="settings-label">Etat update</span>
-              <p id="updateStatusText" class="settings-copy">
-                Aucune verification effectuee pour le moment.
-              </p>
+              <div class="settings-card settings-card--status">
+                <div class="mini-head">
+                  <h3>Etat update</h3>
+                  <span class="mini-badge">Auto</span>
+                </div>
+                <p id="updateStatusText" class="settings-copy">
+                  Aucune verification effectuee pour le moment.
+                </p>
+              </div>
             </div>
           </div>
         </section>
