@@ -1,6 +1,6 @@
 {
   "name": "pomotimer",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "private": true,
   "description": "Pomodoro mobile app powered by Capacitor.",
   "scripts": {
@@ -15,7 +15,8 @@
     "@capacitor/app": "^8.1.0",
     "@capacitor/browser": "^8.0.3",
     "@capacitor/core": "^8.0.0",
-    "@capacitor/local-notifications": "^8.0.2"
+    "@capacitor/local-notifications": "^8.0.2",
+    "@capacitor/status-bar": "^8.0.2"
   },
   "devDependencies": {
     "@capacitor/android": "^8.0.0",

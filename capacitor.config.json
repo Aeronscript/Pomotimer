@@ -9,6 +9,11 @@
     "LocalNotifications": {
       "smallIcon": "ic_stat_pomotimer",
       "iconColor": "#EB4B3E"
+    },
+    "StatusBar": {
+      "overlaysWebView": false,
+      "backgroundColor": "#FFF7F1",
+      "style": "DARK"
     }
   }
 }

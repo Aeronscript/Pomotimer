@@ -10,14 +10,16 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import com.getcapacitor.BridgeActivity;
 
 public class MainActivity extends BridgeActivity {
+    private static final String APP_SYSTEM_BAR_COLOR = "#FFF7F1";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Window window = getWindow();
-        WindowCompat.setDecorFitsSystemWindows(window, false);
-        window.setStatusBarColor(Color.TRANSPARENT);
-        window.setNavigationBarColor(Color.TRANSPARENT);
+        WindowCompat.setDecorFitsSystemWindows(window, true);
+        window.setStatusBarColor(Color.parseColor(APP_SYSTEM_BAR_COLOR));
+        window.setNavigationBarColor(Color.parseColor(APP_SYSTEM_BAR_COLOR));
 
         WindowInsetsControllerCompat insetsController =
             new WindowInsetsControllerCompat(window, window.getDecorView());

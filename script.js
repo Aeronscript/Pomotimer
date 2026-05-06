@@ -1,4 +1,5 @@
-const WEB_APP_VERSION = "1.2.7";
+const WEB_APP_VERSION = "1.2.8";
+const NATIVE_STATUS_BAR_COLOR = "#FFF7F1";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
     ? window.location.origin
@@ -71,6 +72,7 @@ const plugins = capacitor?.Plugins ?? {};
 const nativeLocalNotifications = plugins.LocalNotifications ?? null;
 const appPlugin = plugins.App ?? null;
 const browserPlugin = plugins.Browser ?? null;
+const statusBarPlugin = plugins.StatusBar ?? null;
 
 let selectedMinutes = 20;
 let breakMinutes = 5;
@@ -257,6 +259,28 @@ async function ensureNativeNotificationSupport() {
   } catch (error) {
     console.error("Impossible d'initialiser les notifications natives.", error);
     return false;
+  }
+}
+
+async function applyNativeStatusBarTheme() {
+  if (!isNativeCapacitor || !statusBarPlugin) {
+    return;
+  }
+
+  try {
+    if (typeof statusBarPlugin.setOverlaysWebView === "function") {
+      await statusBarPlugin.setOverlaysWebView({ overlay: false });
+    }
+
+    if (typeof statusBarPlugin.setBackgroundColor === "function") {
+      await statusBarPlugin.setBackgroundColor({ color: NATIVE_STATUS_BAR_COLOR });
+    }
+
+    if (typeof statusBarPlugin.setStyle === "function") {
+      await statusBarPlugin.setStyle({ style: "DARK" });
+    }
+  } catch (error) {
+    console.error("Impossible de personnaliser la barre du haut.", error);
   }
 }
 
@@ -970,6 +994,7 @@ async function init() {
   currentVersion = await getCurrentAppVersion();
   updateServerUrl = resolveInitialUpdateServerUrl();
   restoreTimerState();
+  await applyNativeStatusBarTheme();
   await ensureNativeNotificationSupport();
   renderHistory();
   renderNotes();

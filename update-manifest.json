@@ -1,11 +1,11 @@
 {
-  "latestVersion": "1.2.7",
-  "versionCode": 10,
-  "releasedAt": "2026-05-06T14:17:59.440Z",
-  "message": "Une correction visuelle de la barre du haut est disponible.",
+  "latestVersion": "1.2.8",
+  "versionCode": 11,
+  "releasedAt": "2026-05-06T14:30:32.719Z",
+  "message": "La barre du haut suit maintenant la palette de Pomotimer.",
   "apkPath": "/downloads/pomotimer-release.apk",
   "notes": [
-    "Barre du haut harmonisee avec le fond",
-    "Chrome Android plus immersif"
+    "Barre du haut personnalisee",
+    "Palette plus coherente sur Android"
   ]
 }
