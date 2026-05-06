@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Pomotimer</string>
-    <string name="title_activity_main">Pomotimer</string>
+    <string name="app_name">Timeralpha</string>
+    <string name="title_activity_main">Timeralpha</string>
     <string name="package_name">com.pomotimer.app</string>
     <string name="custom_url_scheme">com.pomotimer.app</string>
 </resources>

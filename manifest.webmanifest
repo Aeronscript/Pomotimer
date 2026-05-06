@@ -1,7 +1,7 @@
 {
-  "name": "Pomotimer",
-  "short_name": "Pomotimer",
-  "description": "Pomodoro hors ligne avec focus, pause, historique et notes.",
+  "name": "Timeralpha",
+  "short_name": "Timeralpha",
+  "description": "Timeralpha hors ligne avec focus, pause, historique et notes.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

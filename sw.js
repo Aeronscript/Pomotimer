@@ -1,4 +1,4 @@
-const CACHE_NAME = "pomotimer-v1";
+const CACHE_NAME = "timeralpha-v1";
 const APP_SHELL = [
   "./",
   "./index.html",

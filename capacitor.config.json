@@ -1,6 +1,6 @@
 {
   "appId": "com.pomotimer.app",
-  "appName": "Pomotimer",
+  "appName": "Timeralpha",
   "webDir": "www",
   "server": {
     "androidScheme": "https"

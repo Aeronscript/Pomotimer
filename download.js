@@ -40,9 +40,9 @@ async function loadManifest() {
     latestVersion.textContent = manifest.latestVersion || "-";
     latestBuild.textContent = manifest.versionCode ? `#${manifest.versionCode}` : "-";
     releasedAt.textContent = formatReleaseDate(manifest.releasedAt);
-    downloadButton.href = manifest.apkUrl || manifest.apkPath || "/downloads/pomotimer-release.apk";
+    downloadButton.href = manifest.apkUrl || manifest.apkPath || "/downloads/timeralpha-release.apk";
     downloadStatus.textContent =
-      manifest.message || "La derniere APK est prete au telechargement.";
+      manifest.message || "La derniere APK de Timeralpha est prete au telechargement.";
 
     releaseNotes.innerHTML = "";
     const notes = Array.isArray(manifest.notes) ? manifest.notes : [];

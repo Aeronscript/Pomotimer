@@ -1,15 +1,15 @@
 {
-  "name": "pomotimer",
-  "version": "1.2.12",
+  "name": "timeralpha",
+  "version": "1.2.13",
   "private": true,
-  "description": "Pomodoro mobile app powered by Capacitor.",
+  "description": "Timeralpha mobile app powered by Capacitor.",
   "scripts": {
     "build:web": "node scripts/prepare-web.js",
     "cap:sync": "npm run build:web && npx cap sync",
     "cap:copy": "npm run build:web && npx cap copy",
     "cap:android": "npm run build:web && npx cap open android",
-    "build:apk": "npm run cap:sync && cd android && ./gradlew assembleDebug && mkdir -p ../downloads && cp app/build/outputs/apk/debug/app-debug.apk ../downloads/pomotimer-debug.apk",
-    "build:release-apk": "npm run cap:sync && cd android && ./gradlew assembleRelease && cd .. && mkdir -p downloads && STORE_PASS=$(sed -n 's/^storePassword=//p' keystore/release-signing.properties) && /opt/android-sdk/build-tools/35.0.0/apksigner sign --ks keystore/pomotimer-release.jks --ks-key-alias pomotimer --ks-pass pass:$STORE_PASS --key-pass pass:$STORE_PASS --out downloads/pomotimer-release.apk android/app/build/outputs/apk/release/app-release-unsigned.apk && node scripts/update-release-manifest.js"
+    "build:apk": "npm run cap:sync && cd android && ./gradlew assembleDebug && mkdir -p ../downloads && cp app/build/outputs/apk/debug/app-debug.apk ../downloads/timeralpha-debug.apk",
+    "build:release-apk": "npm run cap:sync && cd android && ./gradlew assembleRelease && cd .. && mkdir -p downloads && STORE_PASS=$(sed -n 's/^storePassword=//p' keystore/release-signing.properties) && /opt/android-sdk/build-tools/35.0.0/apksigner sign --ks keystore/pomotimer-release.jks --ks-key-alias pomotimer --ks-pass pass:$STORE_PASS --key-pass pass:$STORE_PASS --out downloads/timeralpha-release.apk android/app/build/outputs/apk/release/app-release-unsigned.apk && node scripts/update-release-manifest.js"
   },
   "dependencies": {
     "@capacitor/app": "^8.1.0",

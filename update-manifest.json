@@ -1,11 +1,11 @@
 {
-  "latestVersion": "1.2.12",
-  "versionCode": 15,
-  "releasedAt": "2026-05-06T15:17:47.935Z",
-  "message": "La barre systeme visible est de retour avec une teinte plus propre.",
-  "apkPath": "/downloads/pomotimer-release.apk",
+  "latestVersion": "1.2.13",
+  "versionCode": 16,
+  "releasedAt": "2026-05-06T15:53:30.242Z",
+  "message": "Timeralpha adopte un nouveau branding plus net.",
+  "apkPath": "/downloads/timeralpha-release.apk",
   "notes": [
-    "Heure et batterie visibles",
-    "Barre haute recoloree proprement"
+    "Nouveau bandeau haut plus integre",
+    "Logo et nom Timeralpha appliques"
   ]
 }

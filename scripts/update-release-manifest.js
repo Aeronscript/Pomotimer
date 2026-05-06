@@ -16,7 +16,7 @@ const versionNameMatch = gradle.match(/versionName\s+"([^"]+)"/);
 manifest.latestVersion = versionNameMatch?.[1] || packageJson.version;
 manifest.versionCode = Number(versionCodeMatch?.[1] || 1);
 manifest.releasedAt = new Date().toISOString();
-manifest.apkPath = "/downloads/pomotimer-release.apk";
+manifest.apkPath = "/downloads/timeralpha-release.apk";
 
 fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
 

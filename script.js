@@ -248,7 +248,7 @@ async function ensureNativeNotificationSupport() {
     if (typeof nativeLocalNotifications.createChannel === "function") {
       await nativeLocalNotifications.createChannel({
         id: NATIVE_NOTIFICATION_CHANNEL_ID,
-        name: "Pomotimer",
+        name: "Timeralpha",
         description: "Rappels de fin de session focus et pause",
         importance: 5,
         visibility: 1
@@ -414,7 +414,7 @@ async function requestNotifications() {
   const permission = await Notification.requestPermission();
 
   if (permission === "granted") {
-    new Notification("Pomotimer pret", {
+    new Notification("Timeralpha pret", {
       body: "Les notifications personnalisees sont activees.",
       icon: "icons/icon.svg"
     });
@@ -453,7 +453,7 @@ function notifyCompletion() {
   document.title = title;
 
   window.setTimeout(() => {
-    document.title = "Pomotimer";
+    document.title = "Timeralpha";
   }, 3500);
 
   if (isNativeCapacitor) {
@@ -650,7 +650,7 @@ function renderUpdateState() {
     updateStatusText.textContent = `Version ${latestUpdate.latestVersion} disponible.`;
   } else {
     latestVersionValue.textContent = currentVersion;
-    updateStatusText.textContent = `Pomotimer est a jour en version ${currentVersion}.`;
+    updateStatusText.textContent = `Timeralpha est a jour en version ${currentVersion}.`;
   }
 }
 
@@ -659,7 +659,7 @@ function openUpdateModal() {
     return;
   }
 
-  updateModalTitle.textContent = `Veuillez mettre a jour Pomotimer vers ${latestUpdate.latestVersion}`;
+  updateModalTitle.textContent = `Veuillez mettre a jour Timeralpha vers ${latestUpdate.latestVersion}`;
   updateModalBody.textContent =
     latestUpdate.message || `Version ${latestUpdate.latestVersion} disponible pour installation.`;
   updateNotesList.innerHTML = "";
@@ -700,7 +700,7 @@ async function openUpdateInstaller() {
   }
 
   closeUpdateModal();
-  showToast(`Preparation de Pomotimer ${latestUpdate.latestVersion}...`);
+  showToast(`Preparation de Timeralpha ${latestUpdate.latestVersion}...`);
 
   try {
     if (isNativeCapacitor && browserPlugin?.open) {
@@ -746,7 +746,7 @@ async function checkForUpdates({ manual = false } = {}) {
       notes: manifest.notes || [],
       apkUrl: manifest.apkUrl
         ? manifest.apkUrl
-        : new URL(manifest.apkPath || "/downloads/pomotimer-release.apk", serverUrl).toString()
+        : new URL(manifest.apkPath || "/downloads/timeralpha-release.apk", serverUrl).toString()
     };
 
     renderUpdateState();
@@ -761,7 +761,7 @@ async function checkForUpdates({ manual = false } = {}) {
 
     updateStatusText.textContent = `Aucune mise a jour disponible.`;
     if (manual) {
-      showToast("Pomotimer est deja a jour.");
+      showToast("Timeralpha est deja a jour.");
     }
   } catch (error) {
     console.error("Impossible de verifier les mises a jour.", error);

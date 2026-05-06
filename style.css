@@ -141,6 +141,66 @@ textarea {
     calc(16px + env(safe-area-inset-left));
 }
 
+.topband {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding: 8px 2px 2px;
+}
+
+.topband-brand,
+.topband-actions,
+.topband-mark,
+.utility-meta {
+  display: flex;
+  align-items: center;
+}
+
+.topband-brand {
+  gap: 14px;
+}
+
+.topband-mark {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 54px;
+  justify-content: center;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(39, 27, 20, 0.08);
+  box-shadow: var(--shadow-soft);
+}
+
+.topband-mark img {
+  width: 38px;
+  height: 38px;
+}
+
+.topband-eyebrow,
+.utility-kicker {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.topband-title {
+  margin: 6px 0 0;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.18rem, 5vw, 1.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  max-width: 11ch;
+}
+
+.topband-actions {
+  gap: 10px;
+}
+
 .views {
   min-height: calc(100dvh - 128px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
 }
@@ -227,6 +287,19 @@ textarea {
 .utility-row {
   position: relative;
   z-index: 1;
+}
+
+.utility-meta {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.utility-caption {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.4;
+  font-size: 0.9rem;
 }
 
 .utility-actions {
@@ -1032,6 +1105,15 @@ button:active,
   .app-shell {
     padding-left: calc(12px + env(safe-area-inset-left));
     padding-right: calc(12px + env(safe-area-inset-right));
+  }
+
+  .topband {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .topband-actions {
+    justify-content: flex-start;
   }
 
   .bottom-nav {

@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Pomotimer</title>
+    <title>Timeralpha</title>
     <meta name="theme-color" content="#fff7f1" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Pomotimer" />
+    <meta name="apple-mobile-web-app-title" content="Timeralpha" />
     <meta
       name="description"
-      content="Pomotimer hors ligne avec focus, pause, historique, notes et mises a jour."
+      content="Timeralpha hors ligne avec focus, pause, historique, notes et mises a jour."
     />
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
@@ -28,7 +28,7 @@
       <div class="startup-mark">
         <img src="icons/icon.svg" alt="" />
       </div>
-      <p class="startup-title">Pomotimer</p>
+      <p class="startup-title">Timeralpha</p>
     </div>
 
     <div class="app-shell">
@@ -36,25 +36,41 @@
 
       <main class="views">
         <section id="timerView" class="view is-active" aria-label="Minuteur">
+          <section class="topband">
+            <div class="topband-brand">
+              <div class="topband-mark">
+                <img src="icons/icon.svg" alt="" />
+              </div>
+              <div>
+                <p class="topband-eyebrow">Timeralpha</p>
+                <h1 class="topband-title">Focus calme, rythme net.</h1>
+              </div>
+            </div>
+            <div class="topband-actions">
+              <button
+                id="downloadAppButton"
+                class="utility-button utility-button--accent"
+                type="button"
+                aria-label="Telecharger la derniere version"
+              >
+                <span class="material-symbols-rounded" aria-hidden="true">download</span>
+              </button>
+              <button
+                id="checkUpdateButton"
+                class="utility-button"
+                type="button"
+                aria-label="Verifier les mises a jour"
+              >
+                <span class="material-symbols-rounded" aria-hidden="true">system_update_alt</span>
+              </button>
+            </div>
+          </section>
+
           <div class="timer-panel">
             <div class="utility-row">
-              <div class="utility-actions">
-                <button
-                  id="downloadAppButton"
-                  class="utility-button utility-button--accent"
-                  type="button"
-                  aria-label="Telecharger la derniere version"
-                >
-                  <span class="material-symbols-rounded" aria-hidden="true">download</span>
-                </button>
-                <button
-                  id="checkUpdateButton"
-                  class="utility-button"
-                  type="button"
-                  aria-label="Verifier les mises a jour"
-                >
-                  <span class="material-symbols-rounded" aria-hidden="true">system_update_alt</span>
-                </button>
+              <div class="utility-meta">
+                <span class="utility-kicker">Session active</span>
+                <p class="utility-caption">Ton minuteur principal reste au centre.</p>
               </div>
               <span id="phaseBadge" class="phase-badge">FOCUS</span>
             </div>
@@ -218,7 +234,7 @@
                 <div class="settings-pair">
                   <div>
                     <span class="settings-label">Version actuelle</span>
-                    <strong id="currentVersionValue" class="settings-value">1.2.12</strong>
+                    <strong id="currentVersionValue" class="settings-value">1.2.13</strong>
                   </div>
                   <div>
                     <span class="settings-label">Derniere detectee</span>
@@ -289,7 +305,7 @@
     <div id="updateModal" class="modal is-hidden" role="dialog" aria-modal="true" aria-labelledby="updateModalTitle">
       <div class="modal-card">
         <p class="modal-eyebrow">Mise a jour</p>
-        <h2 id="updateModalTitle" class="modal-title">Veuillez mettre a jour Pomotimer</h2>
+        <h2 id="updateModalTitle" class="modal-title">Veuillez mettre a jour Timeralpha</h2>
         <div class="modal-scroll">
           <p id="updateModalBody" class="modal-copy"></p>
           <ul id="updateNotesList" class="modal-list"></ul>

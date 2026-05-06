@@ -1,26 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <linearGradient id="card" x1="92" y1="76" x2="418" y2="438" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ff835f"/>
-      <stop offset="1" stop-color="#d94731"/>
+    <linearGradient id="bg" x1="84" y1="56" x2="422" y2="462" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fffdf9"/>
+      <stop offset="1" stop-color="#f5e8dc"/>
     </linearGradient>
-    <linearGradient id="glow" x1="160" y1="152" x2="354" y2="356" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#fffaf5"/>
-      <stop offset="1" stop-color="#ffe2cc"/>
+    <linearGradient id="ring" x1="120" y1="134" x2="392" y2="388" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff8b67"/>
+      <stop offset="1" stop-color="#d94d34"/>
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="132" fill="#171311"/>
-  <rect x="44" y="44" width="424" height="424" rx="112" fill="url(#card)"/>
-  <circle cx="256" cy="256" r="154" fill="#1a2236" opacity=".18"/>
-  <circle cx="256" cy="256" r="132" fill="none" stroke="rgba(255,248,241,.18)" stroke-width="18"/>
-  <path d="M256 124c72 0 132 60 132 132 0 22-5 44-16 63" fill="none" stroke="url(#glow)" stroke-width="18" stroke-linecap="round"/>
-  <rect x="144" y="165" width="92" height="118" rx="24" fill="#fff8f1"/>
-  <rect x="276" y="165" width="92" height="118" rx="24" fill="#fff8f1"/>
-  <text x="190" y="243" text-anchor="middle" font-family="Sora, Arial, sans-serif" font-size="52" fill="#df4b39">2</text>
-  <text x="322" y="243" text-anchor="middle" font-family="Sora, Arial, sans-serif" font-size="52" fill="#df4b39">5</text>
-  <circle cx="256" cy="224" r="7" fill="#fff4ea" opacity=".72"/>
-  <circle cx="256" cy="256" r="7" fill="#fff4ea" opacity=".72"/>
-  <circle cx="256" cy="288" r="7" fill="#fff4ea" opacity=".72"/>
-  <path d="M221 344h70c26 0 42 14 42 34 0 23-19 38-45 38h-68z" fill="#9f241f" opacity=".28"/>
-  <path d="M256 328c10 0 18 8 18 18v38h20c8 0 12 9 6 15l-38 37c-3 3-8 3-11 0l-38-37c-6-6-2-15 6-15h20v-38c0-10 8-18 17-18z" fill="#fff8f1"/>
+  <rect x="38" y="38" width="436" height="436" rx="118" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="142" fill="none" stroke="url(#ring)" stroke-width="30" stroke-linecap="round" stroke-dasharray="650 150"/>
+  <circle cx="256" cy="256" r="86" fill="#fffaf4"/>
+  <path d="M256 174v88l58 34" fill="none" stroke="#241915" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"/>
+  <circle cx="256" cy="256" r="14" fill="#241915"/>
+  <path d="M334 152l14 22 25 4-18 18 4 25-25-13-23 13 4-25-18-18 25-4z" fill="#f6d85f"/>
 </svg>
