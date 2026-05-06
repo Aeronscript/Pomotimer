@@ -1,11 +1,11 @@
 {
-  "latestVersion": "1.2.10",
-  "versionCode": 13,
-  "releasedAt": "2026-05-06T15:01:03.974Z",
-  "message": "Pomotimer renforce maintenant le mode immersif.",
+  "latestVersion": "1.2.11",
+  "versionCode": 14,
+  "releasedAt": "2026-05-06T15:09:55.439Z",
+  "message": "Le haut de l'application est maintenant mieux integre visuellement.",
   "apkPath": "/downloads/pomotimer-release.apk",
   "notes": [
-    "Mode immersif reapplique au retour",
-    "Barres systeme cachees plus agressivement"
+    "Voile haut plus harmonieux",
+    "Transition visuelle plus propre"
   ]
 }

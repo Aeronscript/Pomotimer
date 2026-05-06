@@ -52,6 +52,19 @@ body {
   overscroll-behavior-y: none;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  height: calc(env(safe-area-inset-top) + 36px);
+  background:
+    linear-gradient(180deg, rgba(22, 18, 16, 0.24) 0%, rgba(56, 36, 26, 0.12) 58%, rgba(255, 247, 241, 0) 100%);
+  pointer-events: none;
+}
+
 button,
 input,
 select,
