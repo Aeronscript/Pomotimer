@@ -1,0 +1,14 @@
+{
+  "appId": "com.pomotimer.app",
+  "appName": "Pomotimer",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_pomotimer",
+      "iconColor": "#EB4B3E"
+    }
+  }
+}

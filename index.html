@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Pomotimer</title>
+    <meta name="theme-color" content="#efe8de" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Pomotimer" />
+    <meta
+      name="description"
+      content="Pomotimer hors ligne avec focus, pause, historique, notes et mises a jour."
+    />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icons/icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Sora:wght@600;700;800&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0,0&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="startupSplash" class="startup-splash" aria-hidden="true">
+      <div class="startup-mark">
+        <img src="icons/icon.svg" alt="" />
+      </div>
+      <p class="startup-title">Pomotimer</p>
+    </div>
+
+    <div class="app-shell">
+      <button id="updateChip" class="update-fab is-hidden" type="button">Mise a jour</button>
+
+      <main class="views">
+        <section id="timerView" class="view is-active" aria-label="Minuteur">
+          <div class="timer-panel">
+            <div class="utility-row">
+              <button
+                id="checkUpdateButton"
+                class="utility-button"
+                type="button"
+                aria-label="Verifier les mises a jour"
+              >
+                <span class="material-symbols-rounded" aria-hidden="true">system_update_alt</span>
+              </button>
+              <span id="phaseBadge" class="phase-badge">FOCUS</span>
+            </div>
+
+            <div class="dial-stage">
+              <div id="progressRing" class="progress-dial" style="--progress: 0">
+                <div class="dial-content">
+                  <div class="time-grid" aria-live="polite">
+                    <div class="time-card">
+                      <span id="minutes">20</span>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-card">
+                      <span id="seconds">00</span>
+                    </div>
+                  </div>
+                  <p id="sessionLabel" class="session-label">Session de focus</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="metrics-strip">
+              <article class="metric-card">
+                <span class="metric-label">Round</span>
+                <strong id="roundCount" class="metric-value">0/4</strong>
+              </article>
+              <article class="metric-card">
+                <span class="metric-label">Goal</span>
+                <strong id="goalCount" class="metric-value">0/12</strong>
+              </article>
+            </div>
+
+            <div class="control-row">
+              <button id="toggleTimer" class="primary-action" type="button">Demarrer</button>
+              <button id="resetTimerButton" class="secondary-action" type="button">Reinitialiser</button>
+            </div>
+          </div>
+
+          <section class="surface-card surface-card--compact">
+            <div class="section-head">
+              <h2>Durations</h2>
+            </div>
+
+            <div class="preset-stack">
+              <div class="preset-group">
+                <span class="preset-label">Focus</span>
+                <div class="preset-row">
+                  <button class="preset-button is-active" data-type="focus" data-minutes="20" type="button">20</button>
+                  <button class="preset-button" data-type="focus" data-minutes="25" type="button">25</button>
+                  <button class="preset-button" data-type="focus" data-minutes="30" type="button">30</button>
+                  <button class="preset-button" data-type="focus" data-minutes="35" type="button">35</button>
+                </div>
+              </div>
+
+              <div class="preset-group">
+                <span class="preset-label">Pause</span>
+                <div class="preset-row">
+                  <button class="preset-button is-active" data-type="break" data-minutes="5" type="button">5</button>
+                  <button class="preset-button" data-type="break" data-minutes="10" type="button">10</button>
+                  <button class="preset-button" data-type="break" data-minutes="15" type="button">15</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="updateBanner" class="update-banner is-hidden">
+            <div>
+              <p class="update-banner-title">Nouvelle version disponible</p>
+              <p id="updateBannerText" class="update-banner-text"></p>
+            </div>
+            <button id="openUpdateModalButton" class="banner-action" type="button">Installer</button>
+          </section>
+        </section>
+
+        <section id="historyView" class="view" aria-label="Historique">
+          <div class="surface-card surface-card--tall">
+            <div class="section-head">
+              <h2>Historique</h2>
+            </div>
+            <div class="summary-grid">
+              <article class="summary-card">
+                <span class="summary-label">Sessions</span>
+                <strong id="historyTotal" class="summary-value">0</strong>
+              </article>
+              <article class="summary-card">
+                <span class="summary-label">Aujourd’hui</span>
+                <strong id="historyToday" class="summary-value">0</strong>
+              </article>
+            </div>
+            <ul id="historyList" class="stack-list">
+              <li class="empty-state">Aucune session terminee.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="notesView" class="view" aria-label="Notes">
+          <div class="surface-card surface-card--tall">
+            <div class="section-head">
+              <h2>Notes</h2>
+            </div>
+            <form id="notesForm" class="notes-form" novalidate>
+              <label class="field">
+                <span>Titre</span>
+                <input id="noteTitle" name="title" type="text" maxlength="60" required />
+              </label>
+              <label class="field">
+                <span>Statut</span>
+                <select id="noteStatus" name="status">
+                  <option value="En cours">En cours</option>
+                  <option value="En validation">En validation</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Contenu</span>
+                <textarea id="noteContent" name="content" rows="4" maxlength="240" required></textarea>
+              </label>
+              <p id="notesFeedback" class="feedback" aria-live="polite"></p>
+              <button class="primary-action primary-action--small" type="submit">Enregistrer</button>
+            </form>
+            <ul id="notesList" class="stack-list">
+              <li class="empty-state">Aucune note enregistree.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="settingsView" class="view" aria-label="Reglages">
+          <div class="surface-card surface-card--tall">
+            <div class="section-head">
+              <h2>Reglages</h2>
+            </div>
+
+            <div class="settings-card">
+              <span class="settings-label">Version actuelle</span>
+              <strong id="currentVersionValue" class="settings-value">1.2.1</strong>
+            </div>
+
+            <div class="settings-card">
+              <span class="settings-label">Derniere version detectee</span>
+              <strong id="latestVersionValue" class="settings-value">-</strong>
+            </div>
+
+            <label class="field">
+              <span>Serveur de mise a jour</span>
+              <input
+                id="updateServerInput"
+                type="url"
+                placeholder="https://pomotimer-4dt.pages.dev"
+                inputmode="url"
+              />
+            </label>
+
+            <div class="settings-actions">
+              <button id="saveUpdateServerButton" class="secondary-action secondary-action--block" type="button">
+                Enregistrer le serveur
+              </button>
+              <button id="notifyButton" class="secondary-action secondary-action--block" type="button">
+                Activer les notifications
+              </button>
+            </div>
+
+            <div class="settings-card">
+              <span class="settings-label">Etat update</span>
+              <p id="updateStatusText" class="settings-copy">
+                Aucune verification effectuee pour le moment.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Navigation principale">
+        <button class="nav-item is-active" data-tab="timer" type="button">
+          <span class="material-symbols-rounded nav-icon" aria-hidden="true">timer</span>
+          <span>Timer</span>
+        </button>
+        <button class="nav-item" data-tab="history" type="button">
+          <span class="material-symbols-rounded nav-icon" aria-hidden="true">schedule</span>
+          <span>Historique</span>
+        </button>
+        <button class="nav-item" data-tab="notes" type="button">
+          <span class="material-symbols-rounded nav-icon" aria-hidden="true">sticky_note_2</span>
+          <span>Notes</span>
+        </button>
+        <button class="nav-item" data-tab="settings" type="button">
+          <span class="material-symbols-rounded nav-icon" aria-hidden="true">tune</span>
+          <span>Reglages</span>
+        </button>
+      </nav>
+    </div>
+
+    <div id="updateModal" class="modal is-hidden" role="dialog" aria-modal="true" aria-labelledby="updateModalTitle">
+      <div class="modal-card">
+        <p class="modal-eyebrow">Mise a jour</p>
+        <h2 id="updateModalTitle" class="modal-title">Veuillez mettre a jour Pomotimer</h2>
+        <p id="updateModalBody" class="modal-copy"></p>
+        <ul id="updateNotesList" class="modal-list"></ul>
+        <div class="modal-actions">
+          <button id="updateLaterButton" class="secondary-action secondary-action--block" type="button">
+            Plus tard
+          </button>
+          <button id="updateNowButton" class="primary-action primary-action--small" type="button">
+            Mettre a jour
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

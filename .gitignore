@@ -1,0 +1,12 @@
+node_modules/
+www/
+dist/
+keystore/
+downloads/
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+cloudflare-site/
+.wrangler/
+chien.svg

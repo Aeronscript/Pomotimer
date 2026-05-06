@@ -1,0 +1,12 @@
+{
+  "latestVersion": "1.2.1",
+  "versionCode": 4,
+  "message": "Une nouvelle version plus epuree et mieux connectee de Pomotimer est disponible.",
+  "apkPath": "/downloads/pomotimer-release.apk",
+  "notes": [
+    "Interface plus minimaliste et mieux alignee",
+    "Navigation basse fixe et plus propre",
+    "Serveur de mise a jour prepare pour Cloudflare Pages",
+    "Animations et couleurs retravaillees"
+  ]
+}

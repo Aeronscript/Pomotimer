@@ -1,0 +1,20 @@
+{
+  "name": "Pomotimer",
+  "short_name": "Pomotimer",
+  "description": "Pomodoro hors ligne avec focus, pause, historique et notes.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#f8bc66",
+  "theme_color": "#1f0f0a",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
