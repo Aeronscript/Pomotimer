@@ -1,12 +1,12 @@
 {
-  "latestVersion": "1.2.25",
-  "versionCode": 28,
-  "releasedAt": "2026-05-06T19:20:24.124Z",
-  "message": "Timeralpha simplifie le menu rapide et recentre mieux son habillage.",
+  "latestVersion": "1.2.26",
+  "versionCode": 29,
+  "releasedAt": "2026-05-06T19:47:45.717Z",
+  "message": "Timeralpha fond mieux ses sections et supprime l'effet de plaque autour des blocs.",
   "apkPath": "/downloads/timeralpha-release.apk",
   "notes": [
-    "Menu rapide limite a update et ambiances",
-    "Ambiances rangees proprement et appliquees globalement",
-    "Header et zones mixtes mieux fondus dans l'ecran"
+    "Ombres et couches de surface allegees",
+    "Sections arrondies mieux fondues dans le fond",
+    "Navigation et cartes sans plaque parasite"
   ]
 }

@@ -15,8 +15,8 @@
   --success-text: #2f7a48;
   --warning-soft: rgba(216, 154, 67, 0.16);
   --warning-text: #9a651a;
-  --shadow: 0 20px 50px rgba(78, 53, 35, 0.12);
-  --shadow-soft: 0 12px 30px rgba(78, 53, 35, 0.08);
+  --shadow: 0 14px 30px rgba(78, 53, 35, 0.08);
+  --shadow-soft: 0 8px 20px rgba(78, 53, 35, 0.06);
   --topband-surface: linear-gradient(180deg, rgba(255, 251, 246, 0.42), rgba(255, 247, 241, 0.18));
   --topband-glow:
     radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.92), transparent 22%),
@@ -103,7 +103,7 @@
   --nav-active-surface: linear-gradient(180deg, rgba(242, 106, 75, 0.18), rgba(255, 255, 255, 0.42));
   --brand-text: var(--text);
   --glass-stroke: rgba(255, 255, 255, 0.24);
-  --glass-shadow-soft: 0 10px 24px rgba(255, 232, 214, 0.18);
+  --glass-shadow-soft: 0 8px 18px rgba(255, 232, 214, 0.12);
   --menu-border: var(--line);
   --menu-shadow: 0 20px 44px rgba(78, 53, 35, 0.16);
   --menu-item-ring: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
@@ -111,7 +111,7 @@
   --menu-mode-ring: inset 0 0 0 1px var(--line);
   --surface-inset-ring: inset 0 1px 0 rgba(255, 255, 255, 0.38);
   --nav-border: var(--line);
-  --nav-shadow: 0 18px 44px rgba(78, 53, 35, 0.14);
+  --nav-shadow: 0 10px 24px rgba(78, 53, 35, 0.1);
   --nav-active-ring: inset 0 0 0 1px rgba(255, 255, 255, 0.48);
   --overlay-backdrop: rgba(17, 13, 12, 0.28);
   --modal-fade: linear-gradient(180deg, rgba(255, 252, 247, 0), rgba(255, 252, 247, 0.96) 36%);
@@ -224,8 +224,8 @@ body[data-ambience="midnight"] {
   --success-text: #9fe2c3;
   --warning-soft: rgba(255, 179, 124, 0.2);
   --warning-text: #ffd2a4;
-  --shadow: 0 22px 52px rgba(5, 6, 13, 0.44);
-  --shadow-soft: 0 12px 30px rgba(5, 6, 13, 0.24);
+  --shadow: 0 14px 32px rgba(5, 6, 13, 0.28);
+  --shadow-soft: 0 8px 18px rgba(5, 6, 13, 0.16);
   --topband-surface: linear-gradient(180deg, rgba(38, 41, 58, 0.7), rgba(22, 24, 34, 0.36));
   --topband-glow:
     radial-gradient(circle at 22% 48%, rgba(181, 169, 240, 0.24), transparent 26%),
@@ -321,7 +321,7 @@ body[data-ambience="lagoon"] {
   --success-text: #b7f0d8;
   --warning-soft: rgba(255, 197, 122, 0.22);
   --warning-text: #ffe1af;
-  --shadow: 0 22px 52px rgba(3, 14, 18, 0.34);
+  --shadow: 0 14px 32px rgba(3, 14, 18, 0.22);
   --topband-surface: linear-gradient(180deg, rgba(20, 56, 66, 0.78), rgba(15, 35, 42, 0.4));
   --topband-glow:
     radial-gradient(circle at 18% 50%, rgba(207, 255, 255, 0.18), transparent 24%),
@@ -417,7 +417,7 @@ body[data-ambience="berry"] {
   --success-text: #d8f1de;
   --warning-soft: rgba(255, 197, 144, 0.22);
   --warning-text: #ffe0bf;
-  --shadow: 0 22px 52px rgba(15, 3, 14, 0.36);
+  --shadow: 0 14px 32px rgba(15, 3, 14, 0.24);
   --topband-surface: linear-gradient(180deg, rgba(82, 35, 75, 0.74), rgba(45, 20, 41, 0.42));
   --topband-glow:
     radial-gradient(circle at 20% 48%, rgba(255, 236, 245, 0.18), transparent 24%),
@@ -513,7 +513,7 @@ body[data-ambience="dusk"] {
   --success-text: #c4efdf;
   --warning-soft: rgba(255, 206, 132, 0.22);
   --warning-text: #ffe4b2;
-  --shadow: 0 22px 52px rgba(8, 12, 24, 0.34);
+  --shadow: 0 14px 32px rgba(8, 12, 24, 0.22);
   --topband-surface: linear-gradient(180deg, rgba(48, 62, 102, 0.72), rgba(27, 35, 58, 0.42));
   --topband-glow:
     radial-gradient(circle at 22% 46%, rgba(241, 244, 255, 0.16), transparent 24%),
@@ -609,7 +609,7 @@ body[data-ambience="pearl"] {
   --success-text: #3f7d61;
   --warning-soft: rgba(224, 184, 122, 0.18);
   --warning-text: #9f6c23;
-  --shadow: 0 20px 50px rgba(97, 78, 69, 0.12);
+  --shadow: 0 14px 28px rgba(97, 78, 69, 0.08);
   --topband-surface: linear-gradient(180deg, rgba(255, 255, 252, 0.64), rgba(247, 241, 236, 0.28));
   --topband-glow:
     radial-gradient(circle at 20% 48%, rgba(255, 255, 255, 0.98), transparent 24%),
@@ -705,7 +705,7 @@ body[data-ambience="ember"] {
   --success-text: #d5f1cc;
   --warning-soft: rgba(255, 204, 125, 0.22);
   --warning-text: #ffe4b0;
-  --shadow: 0 22px 52px rgba(14, 7, 7, 0.38);
+  --shadow: 0 14px 32px rgba(14, 7, 7, 0.24);
   --topband-surface: linear-gradient(180deg, rgba(79, 45, 37, 0.76), rgba(37, 21, 19, 0.44));
   --topband-glow:
     radial-gradient(circle at 20% 48%, rgba(255, 244, 238, 0.16), transparent 24%),
@@ -911,6 +911,8 @@ textarea {
     inset 0 0 0 1px var(--glass-stroke),
     var(--glass-shadow-soft);
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
 
 .topband::before {
@@ -1153,7 +1155,7 @@ textarea {
   border: 1px solid var(--line);
   background: var(--surface);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(18px);
+  isolation: isolate;
 }
 
 .timer-panel {
@@ -1446,6 +1448,7 @@ textarea {
   margin-top: 12px;
   padding: 18px;
   border-radius: 28px;
+  overflow: hidden;
 }
 
 .surface-card--compact {
@@ -1592,6 +1595,7 @@ textarea {
   background: var(--panel-soft);
   border: 1px solid var(--panel-soft-border);
   box-shadow: var(--panel-soft-shadow);
+  overflow: hidden;
 }
 
 .settings-card--hero {
@@ -1810,7 +1814,8 @@ textarea {
   background: var(--nav-surface);
   border: 1px solid var(--nav-border);
   box-shadow: var(--nav-shadow);
-  backdrop-filter: blur(22px);
+  isolation: isolate;
+  overflow: hidden;
 }
 
 .nav-item {

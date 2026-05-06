@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.25";
+const WEB_APP_VERSION = "1.2.26";
 const AMBIENCE_THEMES = {
   focus: { metaColor: "#fff7f1", statusStyle: "DARK" },
   calm: { metaColor: "#fbf2ea", statusStyle: "DARK" },
