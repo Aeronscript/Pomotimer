@@ -945,6 +945,15 @@ textarea {
   z-index: 1;
 }
 
+.topband-wordmark {
+  display: block;
+  width: min(210px, 58vw);
+  max-width: 100%;
+  height: auto;
+  opacity: 0.9;
+  filter: saturate(1.02);
+}
+
 .topband-eyebrow,
 .utility-kicker {
   margin: 0;
