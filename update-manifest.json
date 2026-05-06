@@ -1,21 +1,12 @@
 {
-  "latestVersion": "1.2.5",
-  "versionCode": 8,
-  "releasedAt": "2026-05-06T13:51:04.740Z",
-  "message": "Une nouvelle version avec vues Notes et Reglages raffinees et barre du haut harmonisee est disponible.",
+  "latestVersion": "1.2.6",
+  "versionCode": 9,
+  "releasedAt": "2026-05-06T14:04:58.063Z",
+  "message": "Une mise a jour plus propre est disponible.",
   "apkPath": "/downloads/pomotimer-release.apk",
   "notes": [
-    "Interface plus minimaliste et mieux alignee",
-    "Navigation basse fixe et plus propre",
-    "Migration automatique du serveur de mise a jour vers timeralpha.vercel.app",
-    "APK alignee sur le design actuel",
-    "Page de telechargement Vercel synchronisee avec les releases",
-    "Bouton visible pour telecharger la derniere version",
-    "Logo retravaille",
-    "Halo lumineux discret autour du cercle",
-    "Bandeau de mise a jour plus visible",
-    "Vues Notes et Reglages retouchees",
-    "Barre du haut harmonisee avec le fond chaud",
-    "Fond degrade orange, blanc et rouge plus present"
+    "Historique retravaille et plus lisible",
+    "Fenetre de mise a jour defilante",
+    "Texte de mise a jour raccourci"
   ]
 }

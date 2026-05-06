@@ -131,22 +131,31 @@
 
         <section id="historyView" class="view" aria-label="Historique">
           <div class="surface-card surface-card--tall">
-            <div class="section-head">
-              <h2>Historique</h2>
+            <div class="section-head section-head--stack">
+              <div>
+                <h2>Historique</h2>
+                <p class="section-copy">Retrouve tes sessions recentes avec un resume plus lisible.</p>
+              </div>
             </div>
-            <div class="summary-grid">
-              <article class="summary-card">
+            <div class="summary-grid summary-grid--history">
+              <article class="summary-card summary-card--warm">
                 <span class="summary-label">Sessions</span>
                 <strong id="historyTotal" class="summary-value">0</strong>
               </article>
-              <article class="summary-card">
+              <article class="summary-card summary-card--soft">
                 <span class="summary-label">Aujourd’hui</span>
                 <strong id="historyToday" class="summary-value">0</strong>
               </article>
             </div>
-            <ul id="historyList" class="stack-list">
-              <li class="empty-state">Aucune session terminee.</li>
-            </ul>
+            <div class="list-panel history-panel">
+              <div class="mini-head">
+                <h3>Sessions recentes</h3>
+                <span class="mini-badge mini-badge--soft">Focus</span>
+              </div>
+              <ul id="historyList" class="stack-list">
+                <li class="empty-state">Aucune session terminee.</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -209,7 +218,7 @@
                 <div class="settings-pair">
                   <div>
                     <span class="settings-label">Version actuelle</span>
-                    <strong id="currentVersionValue" class="settings-value">1.2.5</strong>
+                    <strong id="currentVersionValue" class="settings-value">1.2.6</strong>
                   </div>
                   <div>
                     <span class="settings-label">Derniere detectee</span>
@@ -281,8 +290,10 @@
       <div class="modal-card">
         <p class="modal-eyebrow">Mise a jour</p>
         <h2 id="updateModalTitle" class="modal-title">Veuillez mettre a jour Pomotimer</h2>
-        <p id="updateModalBody" class="modal-copy"></p>
-        <ul id="updateNotesList" class="modal-list"></ul>
+        <div class="modal-scroll">
+          <p id="updateModalBody" class="modal-copy"></p>
+          <ul id="updateNotesList" class="modal-list"></ul>
+        </div>
         <div class="modal-actions">
           <button id="updateLaterButton" class="secondary-action secondary-action--block" type="button">
             Plus tard

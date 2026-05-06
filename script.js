@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.5";
+const WEB_APP_VERSION = "1.2.6";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
     ? window.location.origin
@@ -511,7 +511,7 @@ function renderHistory() {
       return `
         <li class="history-item">
           <div class="history-top">
-            <span class="history-duration">${item.minutes} min</span>
+            <span class="history-duration">${item.minutes} min focus</span>
             <div class="history-actions">
               <span class="history-date">${formatDateTime(item.completedAt)}</span>
               <button class="history-delete" type="button" data-history-index="${originalIndex}">
@@ -519,7 +519,10 @@ function renderHistory() {
               </button>
             </div>
           </div>
-          <div class="history-meta">Round ${item.roundAfter}/${MAX_ROUNDS} · Goal ${item.goalAfter}/${MAX_GOALS}</div>
+          <div class="history-meta">
+            <span class="history-chip">Round ${item.roundAfter}/${MAX_ROUNDS}</span>
+            <span class="history-chip">Goal ${item.goalAfter}/${MAX_GOALS}</span>
+          </div>
         </li>
       `;
     })
@@ -615,11 +618,11 @@ function renderUpdateState() {
   updateBanner.classList.toggle("is-hidden", !needsUpdate);
 
   if (needsUpdate) {
-    updateBannerText.textContent = `Une nouvelle version ${latestUpdate.latestVersion} est disponible. Veuillez la mettre a jour.`;
-    updateStatusText.textContent = `Une mise a jour vers ${latestUpdate.latestVersion} est disponible.`;
+    updateBannerText.textContent = `Version ${latestUpdate.latestVersion} disponible. Installation recommandee.`;
+    updateStatusText.textContent = `Version ${latestUpdate.latestVersion} disponible.`;
   } else {
     latestVersionValue.textContent = currentVersion;
-    updateStatusText.textContent = `Pomotimer est deja a jour en version ${currentVersion}.`;
+    updateStatusText.textContent = `Pomotimer est a jour en version ${currentVersion}.`;
   }
 }
 
@@ -630,8 +633,7 @@ function openUpdateModal() {
 
   updateModalTitle.textContent = `Veuillez mettre a jour Pomotimer vers ${latestUpdate.latestVersion}`;
   updateModalBody.textContent =
-    latestUpdate.message ||
-    `Une nouvelle version est disponible. Version actuelle: ${currentVersion}.`;
+    latestUpdate.message || `Version ${latestUpdate.latestVersion} disponible pour installation.`;
   updateNotesList.innerHTML = "";
 
   (latestUpdate.notes || []).forEach((note) => {
@@ -729,7 +731,7 @@ async function checkForUpdates({ manual = false } = {}) {
       return;
     }
 
-    updateStatusText.textContent = `Aucune mise a jour. Version actuelle: ${currentVersion}.`;
+    updateStatusText.textContent = `Aucune mise a jour disponible.`;
     if (manual) {
       showToast("Pomotimer est deja a jour.");
     }

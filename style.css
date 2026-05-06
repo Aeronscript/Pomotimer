@@ -580,6 +580,22 @@ textarea {
   margin-top: 14px;
 }
 
+.summary-grid--history {
+  margin-top: 16px;
+}
+
+.summary-card--warm {
+  background:
+    radial-gradient(circle at top right, rgba(242, 106, 75, 0.12), transparent 52%),
+    rgba(255, 255, 255, 0.64);
+}
+
+.summary-card--soft {
+  background:
+    radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.46), transparent 56%),
+    rgba(255, 255, 255, 0.56);
+}
+
 .split-section,
 .settings-grid {
   display: grid;
@@ -683,6 +699,10 @@ textarea {
   gap: 12px;
 }
 
+.history-panel {
+  margin-top: 16px;
+}
+
 .history-item,
 .note-item {
   padding: 16px;
@@ -697,7 +717,24 @@ textarea {
 
 .history-duration,
 .note-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 800;
+}
+
+.history-duration::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--accent), var(--accent-deep));
+  box-shadow: 0 0 0 6px rgba(242, 106, 75, 0.12);
+}
+
+.history-date {
+  font-size: 0.84rem;
 }
 
 .history-actions {
@@ -723,6 +760,24 @@ textarea {
 .status-pill.is-review {
   background: var(--warning-soft);
   color: var(--warning-text);
+}
+
+.history-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.84rem;
+}
+
+.history-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(39, 27, 20, 0.08);
 }
 
 .settings-actions {
@@ -798,7 +853,17 @@ textarea {
   width: min(100%, 460px);
   padding: 22px;
   border-radius: 28px;
+  max-height: min(82dvh, 720px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   animation: modal-in 240ms ease;
+}
+
+.modal-scroll {
+  margin-top: 14px;
+  padding-right: 6px;
+  overflow: auto;
 }
 
 .modal-eyebrow {
@@ -825,7 +890,25 @@ textarea {
 }
 
 .modal-actions {
+  position: sticky;
+  bottom: 0;
   margin-top: 18px;
+  padding-top: 14px;
+  background: linear-gradient(180deg, rgba(255, 252, 247, 0), rgba(255, 252, 247, 0.96) 36%);
+}
+
+.modal-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(242, 106, 75, 0.28);
+  border-radius: 999px;
+}
+
+.modal-scroll::-webkit-scrollbar-track {
+  background: rgba(39, 27, 20, 0.05);
+  border-radius: 999px;
 }
 
 .toast {
@@ -954,6 +1037,19 @@ button:active,
 
   .settings-pair {
     grid-template-columns: 1fr;
+  }
+
+  .history-top {
+    flex-direction: column;
+  }
+
+  .history-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .modal-card {
+    max-height: min(86dvh, 720px);
   }
 }
 
