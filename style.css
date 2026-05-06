@@ -912,7 +912,6 @@ textarea {
     var(--glass-shadow-soft);
   position: relative;
   isolation: isolate;
-  overflow: hidden;
 }
 
 .topband::before {
@@ -924,6 +923,7 @@ textarea {
   width: min(56vw, 240px);
   border-radius: 24px;
   background: var(--topband-glow);
+  clip-path: inset(0 round 24px);
   opacity: 0.82;
   filter: blur(14px);
   animation: topband-glow 7s ease-in-out infinite alternate;
@@ -1164,6 +1164,7 @@ textarea {
   border-radius: var(--radius-xl);
   overflow: hidden;
   background: var(--timer-panel-surface), var(--surface);
+  box-shadow: 0 10px 22px rgba(78, 53, 35, 0.05);
 }
 
 .timer-panel::before {
@@ -1449,14 +1450,21 @@ textarea {
   padding: 18px;
   border-radius: 28px;
   overflow: hidden;
+  box-shadow: 0 8px 18px rgba(78, 53, 35, 0.04);
 }
 
 .surface-card--compact {
   padding-top: 16px;
+  background: color-mix(in srgb, var(--surface-strong) 78%, transparent);
 }
 
 .surface-card--tall {
   min-height: calc(100dvh - 162px);
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .section-head h2 {
