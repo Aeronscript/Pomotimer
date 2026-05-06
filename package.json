@@ -1,6 +1,6 @@
 {
   "name": "timeralpha",
-  "version": "1.2.24",
+  "version": "1.2.25",
   "private": true,
   "description": "Timeralpha mobile app powered by Capacitor.",
   "scripts": {
