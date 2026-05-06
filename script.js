@@ -1,8 +1,15 @@
-const WEB_APP_VERSION = "1.2.1";
+const WEB_APP_VERSION = "1.2.2";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
     ? window.location.origin
-    : "https://pomotimer.vercel.app";
+    : "https://timeralpha.vercel.app";
+const LEGACY_UPDATE_SERVER_URLS = new Set([
+  "",
+  "http://127.0.0.1:8000",
+  "http://192.168.1.6:8000",
+  "https://pomotimer.vercel.app",
+  "https://pomotimer-4dt.pages.dev"
+]);
 const MAX_ROUNDS = 4;
 const MAX_GOALS = 12;
 const HISTORY_STORAGE_KEY = "pomotimer-history";
@@ -79,7 +86,7 @@ let sessionHistory = readStorage(HISTORY_STORAGE_KEY);
 let notes = readStorage(NOTES_STORAGE_KEY);
 let currentVersion = WEB_APP_VERSION;
 let latestUpdate = null;
-let updateServerUrl = window.localStorage.getItem(UPDATE_SERVER_STORAGE_KEY) || DEFAULT_UPDATE_SERVER_URL;
+let updateServerUrl = "";
 let activeTab = "timer";
 let toastTimer = null;
 
@@ -99,6 +106,23 @@ function writeStorage(key, value) {
   } catch (error) {
     console.error(`Impossible d'ecrire ${key}`, error);
   }
+}
+
+function normalizeUpdateServerUrl(value) {
+  const rawValue = String(value || "").trim().replace(/\/+$/, "");
+  return rawValue || DEFAULT_UPDATE_SERVER_URL;
+}
+
+function resolveInitialUpdateServerUrl() {
+  const storedValue = window.localStorage.getItem(UPDATE_SERVER_STORAGE_KEY);
+  const normalizedStored = String(storedValue || "").trim().replace(/\/+$/, "");
+
+  if (!normalizedStored || LEGACY_UPDATE_SERVER_URLS.has(normalizedStored)) {
+    window.localStorage.setItem(UPDATE_SERVER_STORAGE_KEY, DEFAULT_UPDATE_SERVER_URL);
+    return DEFAULT_UPDATE_SERVER_URL;
+  }
+
+  return normalizedStored;
 }
 
 function persistTimerState() {
@@ -593,6 +617,7 @@ function renderUpdateState() {
     updateBannerText.textContent = `Pomotimer ${latestUpdate.latestVersion} est pret.`;
     updateStatusText.textContent = `Une mise a jour vers ${latestUpdate.latestVersion} est disponible.`;
   } else {
+    latestVersionValue.textContent = currentVersion;
     updateStatusText.textContent = `Pomotimer est deja a jour en version ${currentVersion}.`;
   }
 }
@@ -701,7 +726,7 @@ async function checkForUpdates({ manual = false } = {}) {
 }
 
 function saveUpdateServer() {
-  updateServerUrl = updateServerInput.value.trim() || DEFAULT_UPDATE_SERVER_URL;
+  updateServerUrl = normalizeUpdateServerUrl(updateServerInput.value);
   window.localStorage.setItem(UPDATE_SERVER_STORAGE_KEY, updateServerUrl);
   updateStatusText.textContent = `Serveur enregistre: ${updateServerUrl}`;
   showToast("Serveur de mise a jour enregistre.");
@@ -923,6 +948,7 @@ function attachEvents() {
 
 async function init() {
   currentVersion = await getCurrentAppVersion();
+  updateServerUrl = resolveInitialUpdateServerUrl();
   restoreTimerState();
   await ensureNativeNotificationSupport();
   renderHistory();

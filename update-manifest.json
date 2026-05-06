@@ -1,13 +1,14 @@
 {
-  "latestVersion": "1.2.1",
-  "versionCode": 4,
-  "releasedAt": "2026-05-06T12:48:02.566Z",
-  "message": "Une nouvelle version plus epuree et mieux connectee de Pomotimer est disponible.",
+  "latestVersion": "1.2.2",
+  "versionCode": 5,
+  "releasedAt": "2026-05-06T13:17:06.875Z",
+  "message": "Une nouvelle version alignee sur le design actuel et le serveur Vercel est disponible.",
   "apkPath": "/downloads/pomotimer-release.apk",
   "notes": [
     "Interface plus minimaliste et mieux alignee",
     "Navigation basse fixe et plus propre",
-    "Page de telechargement preparee pour Vercel",
-    "Animations et couleurs retravaillees"
+    "Migration automatique du serveur de mise a jour vers timeralpha.vercel.app",
+    "APK alignee sur le design actuel",
+    "Page de telechargement Vercel synchronisee avec les releases"
   ]
 }
