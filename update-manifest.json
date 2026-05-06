@@ -1,11 +1,11 @@
 {
-  "latestVersion": "1.2.11",
-  "versionCode": 14,
-  "releasedAt": "2026-05-06T15:09:55.439Z",
-  "message": "Le haut de l'application est maintenant mieux integre visuellement.",
+  "latestVersion": "1.2.12",
+  "versionCode": 15,
+  "releasedAt": "2026-05-06T15:17:47.935Z",
+  "message": "La barre systeme visible est de retour avec une teinte plus propre.",
   "apkPath": "/downloads/pomotimer-release.apk",
   "notes": [
-    "Voile haut plus harmonieux",
-    "Transition visuelle plus propre"
+    "Heure et batterie visibles",
+    "Barre haute recoloree proprement"
   ]
 }

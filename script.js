@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.11";
+const WEB_APP_VERSION = "1.2.12";
 const NATIVE_STATUS_BAR_COLOR = "#FFF7F1";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
@@ -269,7 +269,7 @@ async function applyNativeStatusBarTheme() {
 
   try {
     if (typeof statusBarPlugin.setOverlaysWebView === "function") {
-      await statusBarPlugin.setOverlaysWebView({ overlay: true });
+      await statusBarPlugin.setOverlaysWebView({ overlay: false });
     }
 
     if (typeof statusBarPlugin.setBackgroundColor === "function") {
@@ -280,8 +280,8 @@ async function applyNativeStatusBarTheme() {
       await statusBarPlugin.setStyle({ style: "DARK" });
     }
 
-    if (typeof statusBarPlugin.hide === "function") {
-      await statusBarPlugin.hide();
+    if (typeof statusBarPlugin.show === "function") {
+      await statusBarPlugin.show();
     }
   } catch (error) {
     console.error("Impossible de personnaliser la barre du haut.", error);
