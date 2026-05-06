@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.19";
+const WEB_APP_VERSION = "1.2.20";
 const NATIVE_STATUS_BAR_COLOR = "#FFF7F1";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
@@ -379,6 +379,10 @@ function notificationsSupported() {
 }
 
 function updateNotificationButton() {
+  if (!notifyButton) {
+    return;
+  }
+
   if (isNativeCapacitor) {
     notifyButton.textContent = "Activer les notifications natives";
     return;
@@ -404,11 +408,17 @@ function updateNotificationButton() {
 }
 
 async function requestNotifications() {
+  if (!notifyButton && !isNativeCapacitor) {
+    return;
+  }
+
   if (isNativeCapacitor) {
     const granted = await requestNativeNotificationPermission();
-    notifyButton.textContent = granted
-      ? "Notifications natives actives"
-      : "Notifications natives bloquees";
+    if (notifyButton) {
+      notifyButton.textContent = granted
+        ? "Notifications natives actives"
+        : "Notifications natives bloquees";
+    }
     showToast(
       granted
         ? "Notifications natives actives."
@@ -675,7 +685,8 @@ function switchTab(target) {
   timerView.classList.toggle("is-active", target === "timer");
   historyView.classList.toggle("is-active", target === "history");
   notesView.classList.toggle("is-active", target === "notes");
-  settingsView.classList.toggle("is-active", target === "settings");
+  settingsView?.classList.toggle("is-active", target === "settings");
+  closeTopMenu();
 }
 
 function renderUpdateState() {

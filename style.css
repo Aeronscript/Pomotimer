@@ -221,6 +221,8 @@ textarea {
 }
 
 .topband-actions {
+  display: flex;
+  align-items: flex-start;
   gap: 8px;
   align-self: flex-start;
   position: relative;
@@ -235,6 +237,8 @@ textarea {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
+  z-index: 24;
+  display: grid;
   width: min(232px, calc(100vw - 44px));
   padding: 12px;
   border-radius: 24px;
@@ -1102,10 +1106,6 @@ textarea {
   border: 1px solid rgba(39, 27, 20, 0.08);
   box-shadow: 0 18px 44px rgba(78, 53, 35, 0.14);
   backdrop-filter: blur(22px);
-}
-
-.bottom-nav--three {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .nav-item {
