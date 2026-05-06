@@ -1,12 +1,12 @@
 {
-  "latestVersion": "1.2.16",
-  "versionCode": 19,
-  "releasedAt": "2026-05-06T17:10:50.701Z",
-  "message": "Timeralpha corrige le blocage du splash et affine encore le haut d'ecran.",
+  "latestVersion": "1.2.17",
+  "versionCode": 20,
+  "releasedAt": "2026-05-06T17:20:14.908Z",
+  "message": "Timeralpha force maintenant la disparition du splash et renouvelle le shell mis en cache.",
   "apkPath": "/downloads/timeralpha-release.apk",
   "notes": [
-    "Initialisation securisee pour ne plus rester bloquee au demarrage",
-    "Header compact legerement resserre",
-    "Navigation basse reduite et plus equilibree"
+    "Splash masque automatiquement meme si le script principal echoue",
+    "Cache service worker renouvele",
+    "Ajustements du haut d'ecran et de la navigation basse conserves"
   ]
 }

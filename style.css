@@ -116,6 +116,7 @@ textarea {
     radial-gradient(circle at top, rgba(242, 106, 75, 0.15), transparent 26%),
     linear-gradient(180deg, #f8f1e9 0%, #f2e8dc 100%);
   transition: opacity 420ms ease, visibility 420ms ease;
+  animation: startup-fallback-hide 0.01s linear 2.35s forwards;
 }
 
 .startup-splash.is-hidden {
@@ -1310,6 +1311,14 @@ button:active,
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes startup-fallback-hide {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 }
 

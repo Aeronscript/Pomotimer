@@ -1,4 +1,4 @@
-const CACHE_NAME = "timeralpha-v1";
+const CACHE_NAME = "timeralpha-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
