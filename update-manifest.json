@@ -1,11 +1,11 @@
 {
-  "latestVersion": "1.2.8",
-  "versionCode": 11,
-  "releasedAt": "2026-05-06T14:30:32.719Z",
-  "message": "La barre du haut suit maintenant la palette de Pomotimer.",
+  "latestVersion": "1.2.9",
+  "versionCode": 12,
+  "releasedAt": "2026-05-06T14:42:43.717Z",
+  "message": "Pomotimer s'ouvre maintenant en plein ecran.",
   "apkPath": "/downloads/pomotimer-release.apk",
   "notes": [
-    "Barre du haut personnalisee",
-    "Palette plus coherente sur Android"
+    "Barre du haut masquee au lancement",
+    "Ouverture plus immersive"
   ]
 }

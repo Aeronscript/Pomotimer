@@ -6,6 +6,7 @@ import android.view.Window;
 
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.getcapacitor.BridgeActivity;
 
@@ -17,7 +18,7 @@ public class MainActivity extends BridgeActivity {
         super.onCreate(savedInstanceState);
 
         Window window = getWindow();
-        WindowCompat.setDecorFitsSystemWindows(window, true);
+        WindowCompat.setDecorFitsSystemWindows(window, false);
         window.setStatusBarColor(Color.parseColor(APP_SYSTEM_BAR_COLOR));
         window.setNavigationBarColor(Color.parseColor(APP_SYSTEM_BAR_COLOR));
 
@@ -25,5 +26,9 @@ public class MainActivity extends BridgeActivity {
             new WindowInsetsControllerCompat(window, window.getDecorView());
         insetsController.setAppearanceLightStatusBars(true);
         insetsController.setAppearanceLightNavigationBars(true);
+        insetsController.setSystemBarsBehavior(
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        );
+        insetsController.hide(WindowInsetsCompat.Type.statusBars());
     }
 }

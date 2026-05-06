@@ -1,6 +1,6 @@
 {
   "name": "pomotimer",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "private": true,
   "description": "Pomodoro mobile app powered by Capacitor.",
   "scripts": {
