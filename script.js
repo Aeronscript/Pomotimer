@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.15";
+const WEB_APP_VERSION = "1.2.16";
 const NATIVE_STATUS_BAR_COLOR = "#FFF7F1";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
@@ -730,14 +730,14 @@ function closeUpdateModal() {
 
 function closeTopMenu() {
   isTopMenuOpen = false;
-  topMenu.classList.add("is-hidden");
-  menuToggleButton.setAttribute("aria-expanded", "false");
+  topMenu?.classList.add("is-hidden");
+  menuToggleButton?.setAttribute("aria-expanded", "false");
 }
 
 function toggleTopMenu() {
   isTopMenuOpen = !isTopMenuOpen;
-  topMenu.classList.toggle("is-hidden", !isTopMenuOpen);
-  menuToggleButton.setAttribute("aria-expanded", String(isTopMenuOpen));
+  topMenu?.classList.toggle("is-hidden", !isTopMenuOpen);
+  menuToggleButton?.setAttribute("aria-expanded", String(isTopMenuOpen));
 }
 
 async function openUpdateInstaller() {
@@ -963,25 +963,25 @@ function dismissStartupSplash() {
 }
 
 function attachEvents() {
-  toggleButton.addEventListener("click", toggleTimer);
-  resetTimerButton.addEventListener("click", () => resetTimer(phase));
-  notifyButton.addEventListener("click", requestNotifications);
-  openUpdateModalButton.addEventListener("click", openUpdateModal);
-  updateLaterButton.addEventListener("click", closeUpdateModal);
-  updateNowButton.addEventListener("click", openUpdateInstaller);
-  saveUpdateServerButton.addEventListener("click", saveUpdateServer);
-  notesForm.addEventListener("submit", saveNote);
-  menuToggleButton.addEventListener("click", (event) => {
+  toggleButton?.addEventListener("click", toggleTimer);
+  resetTimerButton?.addEventListener("click", () => resetTimer(phase));
+  notifyButton?.addEventListener("click", requestNotifications);
+  openUpdateModalButton?.addEventListener("click", openUpdateModal);
+  updateLaterButton?.addEventListener("click", closeUpdateModal);
+  updateNowButton?.addEventListener("click", openUpdateInstaller);
+  saveUpdateServerButton?.addEventListener("click", saveUpdateServer);
+  notesForm?.addEventListener("submit", saveNote);
+  menuToggleButton?.addEventListener("click", (event) => {
     event.stopPropagation();
     toggleTopMenu();
   });
-  menuUpdateButton.addEventListener("click", () => {
+  menuUpdateButton?.addEventListener("click", () => {
     closeTopMenu();
     checkForUpdates({ manual: true });
   });
-  menuInstallButton.addEventListener("click", openUpdateInstaller);
-  menuNotifyButton.addEventListener("click", requestNotifications);
-  menuSettingsButton.addEventListener("click", () => {
+  menuInstallButton?.addEventListener("click", openUpdateInstaller);
+  menuNotifyButton?.addEventListener("click", requestNotifications);
+  menuSettingsButton?.addEventListener("click", () => {
     closeTopMenu();
     switchTab("settings");
   });
@@ -1021,7 +1021,7 @@ function attachEvents() {
     item.addEventListener("click", () => switchTab(item.dataset.tab));
   });
 
-  historyList.addEventListener("click", (event) => {
+  historyList?.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
@@ -1033,7 +1033,7 @@ function attachEvents() {
     deleteHistoryItem(Number(deleteButton.dataset.historyIndex));
   });
 
-  notesList.addEventListener("click", (event) => {
+  notesList?.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
@@ -1061,7 +1061,7 @@ function attachEvents() {
       return;
     }
 
-    if (topMenu.contains(target) || menuToggleButton.contains(target)) {
+    if (topMenu?.contains(target) || menuToggleButton?.contains(target)) {
       return;
     }
 
@@ -1077,28 +1077,34 @@ function attachEvents() {
 }
 
 async function init() {
-  currentVersion = await getCurrentAppVersion();
-  updateServerUrl = resolveInitialUpdateServerUrl();
-  restoreTimerState();
-  await applyNativeStatusBarTheme();
-  await ensureNativeNotificationSupport();
-  renderHistory();
-  renderNotes();
-  updateNotificationButton();
-  renderAmbienceMode();
-  renderAll();
-  switchTab(activeTab);
-  attachEvents();
-  resumeRunningTimer();
-  dismissStartupSplash();
-  checkForUpdates();
+  try {
+    currentVersion = await getCurrentAppVersion();
+    updateServerUrl = resolveInitialUpdateServerUrl();
+    restoreTimerState();
+    await applyNativeStatusBarTheme();
+    await ensureNativeNotificationSupport();
+    renderHistory();
+    renderNotes();
+    updateNotificationButton();
+    renderAmbienceMode();
+    renderAll();
+    switchTab(activeTab);
+    attachEvents();
+    resumeRunningTimer();
+    checkForUpdates();
 
-  if (isNativeCapacitor && appPlugin?.addListener) {
-    appPlugin.addListener("appStateChange", async ({ isActive }) => {
-      if (isActive) {
-        await applyNativeStatusBarTheme();
-      }
-    });
+    if (isNativeCapacitor && appPlugin?.addListener) {
+      appPlugin.addListener("appStateChange", async ({ isActive }) => {
+        if (isActive) {
+          await applyNativeStatusBarTheme();
+        }
+      });
+    }
+  } catch (error) {
+    console.error("Echec pendant l'initialisation de Timeralpha.", error);
+    showToast("Ouverture simplifiee activee.");
+  } finally {
+    dismissStartupSplash();
   }
 }
 

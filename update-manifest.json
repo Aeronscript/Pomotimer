@@ -1,12 +1,12 @@
 {
-  "latestVersion": "1.2.15",
-  "versionCode": 18,
-  "releasedAt": "2026-05-06T16:43:02.579Z",
-  "message": "Timeralpha adopte un menu plus discret et trois ambiances visuelles plus posees.",
+  "latestVersion": "1.2.16",
+  "versionCode": 19,
+  "releasedAt": "2026-05-06T17:10:50.701Z",
+  "message": "Timeralpha corrige le blocage du splash et affine encore le haut d'ecran.",
   "apkPath": "/downloads/timeralpha-release.apk",
   "notes": [
-    "Menu rapide avec verification et installation de mise a jour",
-    "Ambiances Focus, Calme et Detendu",
-    "Session centrale simplifiee avec progression legere"
+    "Initialisation securisee pour ne plus rester bloquee au demarrage",
+    "Header compact legerement resserre",
+    "Navigation basse reduite et plus equilibree"
   ]
 }
