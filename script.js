@@ -1,4 +1,4 @@
-const WEB_APP_VERSION = "1.2.2";
+const WEB_APP_VERSION = "1.2.3";
 const DEFAULT_UPDATE_SERVER_URL =
   window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
     ? window.location.origin
@@ -50,6 +50,7 @@ const updateBanner = document.getElementById("updateBanner");
 const updateBannerText = document.getElementById("updateBannerText");
 const openUpdateModalButton = document.getElementById("openUpdateModalButton");
 const checkUpdateButton = document.getElementById("checkUpdateButton");
+const downloadAppButton = document.getElementById("downloadAppButton");
 const updateModal = document.getElementById("updateModal");
 const updateModalTitle = document.getElementById("updateModalTitle");
 const updateModalBody = document.getElementById("updateModalBody");
@@ -642,6 +643,22 @@ function openUpdateModal() {
   updateModal.classList.remove("is-hidden");
 }
 
+async function openDownloadPage() {
+  const downloadUrl = `${updateServerUrl.replace(/\/+$/, "")}/download`;
+
+  try {
+    if (isNativeCapacitor && browserPlugin?.open) {
+      await browserPlugin.open({ url: downloadUrl });
+      return;
+    }
+
+    window.location.href = downloadUrl;
+  } catch (error) {
+    console.error("Impossible d'ouvrir la page de telechargement.", error);
+    showToast("Impossible d'ouvrir la page de telechargement.");
+  }
+}
+
 function closeUpdateModal() {
   updateModal.classList.add("is-hidden");
 }
@@ -871,6 +888,7 @@ function attachEvents() {
   resetTimerButton.addEventListener("click", () => resetTimer(phase));
   notifyButton.addEventListener("click", requestNotifications);
   checkUpdateButton.addEventListener("click", () => checkForUpdates({ manual: true }));
+  downloadAppButton.addEventListener("click", openDownloadPage);
   updateChip.addEventListener("click", openUpdateModal);
   openUpdateModalButton.addEventListener("click", openUpdateModal);
   updateLaterButton.addEventListener("click", closeUpdateModal);

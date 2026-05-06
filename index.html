@@ -38,14 +38,24 @@
         <section id="timerView" class="view is-active" aria-label="Minuteur">
           <div class="timer-panel">
             <div class="utility-row">
-              <button
-                id="checkUpdateButton"
-                class="utility-button"
-                type="button"
-                aria-label="Verifier les mises a jour"
-              >
-                <span class="material-symbols-rounded" aria-hidden="true">system_update_alt</span>
-              </button>
+              <div class="utility-actions">
+                <button
+                  id="downloadAppButton"
+                  class="utility-button utility-button--accent"
+                  type="button"
+                  aria-label="Telecharger la derniere version"
+                >
+                  <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                </button>
+                <button
+                  id="checkUpdateButton"
+                  class="utility-button"
+                  type="button"
+                  aria-label="Verifier les mises a jour"
+                >
+                  <span class="material-symbols-rounded" aria-hidden="true">system_update_alt</span>
+                </button>
+              </div>
               <span id="phaseBadge" class="phase-badge">FOCUS</span>
             </div>
 
@@ -178,7 +188,7 @@
 
             <div class="settings-card">
               <span class="settings-label">Version actuelle</span>
-              <strong id="currentVersionValue" class="settings-value">1.2.2</strong>
+              <strong id="currentVersionValue" class="settings-value">1.2.3</strong>
             </div>
 
             <div class="settings-card">
