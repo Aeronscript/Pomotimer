@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Telecharger Pomotimer</title>
+    <meta
+      name="description"
+      content="Telecharge la derniere APK de Pomotimer et suis les mises a jour depuis la meme page."
+    />
+    <meta name="theme-color" content="#14110f" />
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="download.css" />
+  </head>
+  <body>
+    <main class="download-shell">
+      <section class="download-card">
+        <div class="download-head">
+          <div class="brand-mark">
+            <img src="icons/icon.svg" alt="" />
+          </div>
+          <div>
+            <p class="eyebrow">Pomotimer Android</p>
+            <h1>Une page propre pour installer l’app et suivre les nouvelles versions.</h1>
+          </div>
+        </div>
+
+        <div class="release-panel">
+          <div class="release-item">
+            <span class="release-label">Derniere version</span>
+            <strong id="latestVersion">-</strong>
+          </div>
+          <div class="release-item">
+            <span class="release-label">Build</span>
+            <strong id="latestBuild">-</strong>
+          </div>
+          <div class="release-item">
+            <span class="release-label">Publiee</span>
+            <strong id="releasedAt">-</strong>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <a id="downloadButton" class="primary-button" href="/downloads/pomotimer-release.apk">
+            Telecharger l'APK
+          </a>
+          <a class="secondary-button" href="/">Ouvrir l'interface</a>
+        </div>
+
+        <p id="downloadStatus" class="status-copy">
+          La page charge les informations de mise a jour automatiquement depuis le manifeste.
+        </p>
+
+        <section class="notes-panel">
+          <div class="notes-head">
+            <h2>Nouveautes</h2>
+            <button id="refreshManifest" class="refresh-button" type="button">Rafraichir</button>
+          </div>
+          <ul id="releaseNotes" class="notes-list">
+            <li>Chargement des notes...</li>
+          </ul>
+        </section>
+      </section>
+    </main>
+
+    <script src="download.js"></script>
+  </body>
+</html>

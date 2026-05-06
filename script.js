@@ -1,5 +1,8 @@
 const WEB_APP_VERSION = "1.2.1";
-const DEFAULT_UPDATE_SERVER_URL = "";
+const DEFAULT_UPDATE_SERVER_URL =
+  window.location.protocol.startsWith("http") && window.location.hostname.endsWith("vercel.app")
+    ? window.location.origin
+    : "https://pomotimer.vercel.app";
 const MAX_ROUNDS = 4;
 const MAX_GOALS = 12;
 const HISTORY_STORAGE_KEY = "pomotimer-history";

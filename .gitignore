@@ -2,7 +2,9 @@ node_modules/
 www/
 dist/
 keystore/
-downloads/
+downloads/*
+!downloads/.gitkeep
+!downloads/pomotimer-release.apk
 android/.gradle/
 android/build/
 android/app/build/
