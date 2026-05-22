@@ -51,6 +51,15 @@ const noteStatus = document.getElementById("noteStatus");
 const noteContent = document.getElementById("noteContent");
 const notesFeedback = document.getElementById("notesFeedback");
 const notesList = document.getElementById("notesList");
+const notePriority = document.getElementById("notePriority");
+const noteTags = document.getElementById("noteTags");
+const noteDueDate = document.getElementById("noteDueDate");
+const contentCharCount = document.getElementById("contentCharCount");
+const clearNotesFormButton = document.getElementById("clearNotesForm");
+const notesSearchInput = document.getElementById("notesSearchInput");
+const notesFilterStatus = document.getElementById("notesFilterStatus");
+const notesSortBy = document.getElementById("notesSortBy");
+const notesCountBadge = document.getElementById("notesCountBadge");
 const navItems = document.querySelectorAll(".nav-item");
 const timerView = document.getElementById("timerView");
 const historyView = document.getElementById("historyView");
@@ -633,22 +642,81 @@ function renderHistory() {
 }
 
 function statusClass(status) {
-  return status === "En validation" ? "is-review" : "is-progress";
+  return status === "En validation" ? "is-review" : status === "Termine" ? "is-complete" : "is-progress";
+}
+
+function getFilteredAndSortedNotes() {
+  let filteredNotes = [...notes];
+  
+  // Filtrer par recherche
+  const searchTerm = (notesSearchInput?.value || "").toLowerCase().trim();
+  if (searchTerm) {
+    filteredNotes = filteredNotes.filter(note => 
+      note.title.toLowerCase().includes(searchTerm) ||
+      note.content.toLowerCase().includes(searchTerm) ||
+      (note.tags && note.tags.toLowerCase().includes(searchTerm))
+    );
+  }
+  
+  // Filtrer par statut
+  const statusFilter = notesFilterStatus?.value || "all";
+  if (statusFilter !== "all") {
+    filteredNotes = filteredNotes.filter(note => note.status === statusFilter);
+  }
+  
+  // Trier
+  const sortBy = notesSortBy?.value || "date-desc";
+  filteredNotes.sort((a, b) => {
+    switch (sortBy) {
+      case "date-asc":
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      case "title-asc":
+        return a.title.localeCompare(b.title);
+      case "title-desc":
+        return b.title.localeCompare(a.title);
+      case "date-desc":
+      default:
+        return new Date(b.createdAt) - new Date(a.createdAt);
+    }
+  });
+  
+  return filteredNotes;
 }
 
 function renderNotes() {
-  if (notes.length === 0) {
+  const filteredNotes = getFilteredAndSortedNotes();
+  
+  // Mettre a jour le badge du nombre de notes
+  if (notesCountBadge) {
+    notesCountBadge.textContent = filteredNotes.length;
+  }
+  
+  if (filteredNotes.length === 0) {
     notesList.innerHTML = '<li class="empty-state">Aucune note enregistree.</li>';
     return;
   }
-
-  notesList.innerHTML = notes
-    .slice()
-    .reverse()
-    .map((note, reversedIndex) => {
-      const originalIndex = notes.length - 1 - reversedIndex;
+  
+  // Trouver les index originaux pour la suppression
+  notesList.innerHTML = filteredNotes
+    .map((note) => {
+      const originalIndex = notes.findIndex(n => 
+        n.title === note.title && 
+        n.createdAt === note.createdAt && 
+        n.content === note.content
+      );
+      
+      const tagsHtml = note.tags 
+        ? `<div class="note-tags">${note.tags.split(",").map(tag => `<span class="note-tag">${escapeHtml(tag.trim())}</span>`).join("")}</div>`
+        : "";
+      
+      const dueDateHtml = note.dueDate
+        ? `<div class="note-due-date"><span class="material-symbols-rounded" aria-hidden="true">event</span>${formatDateTime(note.dueDate)}</div>`
+        : "";
+      
+      const priorityAttr = note.priority ? `data-priority="${note.priority}"` : "";
+      
       return `
-        <li class="note-item">
+        <li class="note-item" ${priorityAttr}>
           <div class="note-top">
             <span class="note-title">${escapeHtml(note.title)}</span>
             <div class="history-actions">
@@ -659,7 +727,12 @@ function renderNotes() {
             </div>
           </div>
           <div class="note-content">${escapeHtml(note.content)}</div>
-          <div class="note-date">${formatDateTime(note.createdAt)}</div>
+          <div class="note-meta">
+            <span class="note-date">${formatDateTime(note.createdAt)}</span>
+            ${note.priority ? `<span class="history-chip">Priorite: ${note.priority}</span>` : ""}
+          </div>
+          ${tagsHtml}
+          ${dueDateHtml}
         </li>
       `;
     })
@@ -996,6 +1069,9 @@ function saveNote(event) {
   const title = noteTitle.value.trim();
   const content = noteContent.value.trim();
   const status = noteStatus.value;
+  const priority = notePriority?.value || "moyenne";
+  const tags = noteTags?.value.trim() || "";
+  const dueDate = noteDueDate?.value || null;
 
   if (!title || !content) {
     notesFeedback.textContent = "Le titre et le contenu sont obligatoires.";
@@ -1006,14 +1082,37 @@ function saveNote(event) {
     title,
     content,
     status,
+    priority,
+    tags,
+    dueDate,
     createdAt: new Date().toISOString()
   });
 
   writeStorage(NOTES_STORAGE_KEY, notes);
   notesForm.reset();
   noteStatus.value = "En cours";
+  notePriority.value = "moyenne";
+  if (contentCharCount) {
+    contentCharCount.textContent = "0/2000 caracteres";
+  }
   notesFeedback.textContent = "Note enregistree.";
   renderNotes();
+}
+
+function clearNotesFormHandler() {
+  notesForm?.reset();
+  noteStatus.value = "En cours";
+  notePriority.value = "moyenne";
+  if (contentCharCount) {
+    contentCharCount.textContent = "0/2000 caracteres";
+  }
+  notesFeedback.textContent = "";
+}
+
+function updateContentCharCount() {
+  if (!contentCharCount || !noteContent) return;
+  const count = noteContent.value.length;
+  contentCharCount.textContent = `${count}/2000 caracteres`;
 }
 
 function dismissStartupSplash() {
@@ -1031,6 +1130,15 @@ function attachEvents() {
   updateNowButton?.addEventListener("click", openUpdateInstaller);
   saveUpdateServerButton?.addEventListener("click", saveUpdateServer);
   notesForm?.addEventListener("submit", saveNote);
+  clearNotesFormButton?.addEventListener("click", clearNotesFormHandler);
+  
+  // Gestion du compteur de caracteres
+  noteContent?.addEventListener("input", updateContentCharCount);
+  
+  // Gestion des filtres et recherche
+  notesSearchInput?.addEventListener("input", renderNotes);
+  notesFilterStatus?.addEventListener("change", renderNotes);
+  notesSortBy?.addEventListener("change", renderNotes);
   menuToggleButton?.addEventListener("click", (event) => {
     event.stopPropagation();
     toggleTopMenu();
