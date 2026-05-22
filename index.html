@@ -200,37 +200,94 @@
                 <p class="section-copy">Capture tes idees sans casser le rythme, puis reviens-y proprement.</p>
               </div>
             </div>
-            <div class="split-section">
+            
+            <div class="notes-toolbar">
+              <div class="notes-search">
+                <span class="material-symbols-rounded" aria-hidden="true">search</span>
+                <input id="notesSearchInput" type="text" placeholder="Rechercher une note..." />
+              </div>
+              <div class="notes-filters">
+                <select id="notesFilterStatus" class="filter-select">
+                  <option value="all">Tous les statuts</option>
+                  <option value="En cours">En cours</option>
+                  <option value="En validation">En validation</option>
+                  <option value="Termine">Termine</option>
+                </select>
+                <select id="notesSortBy" class="filter-select">
+                  <option value="date-desc">Plus recent</option>
+                  <option value="date-asc">Plus ancien</option>
+                  <option value="title-asc">Titre A-Z</option>
+                  <option value="title-desc">Titre Z-A</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="split-section split-section--notes">
               <form id="notesForm" class="notes-form notes-form--card" novalidate>
                 <div class="mini-head">
                   <h3>Nouvelle note</h3>
                   <span class="mini-badge">Rapide</span>
                 </div>
-                <label class="field">
+                
+                <label class="field field--row">
                   <span>Titre</span>
-                  <input id="noteTitle" name="title" type="text" maxlength="60" required />
+                  <input id="noteTitle" name="title" type="text" maxlength="80" required placeholder="Titre de la note" />
                 </label>
+                
+                <div class="field-row">
+                  <label class="field field--half">
+                    <span>Statut</span>
+                    <select id="noteStatus" name="status">
+                      <option value="En cours">En cours</option>
+                      <option value="En validation">En validation</option>
+                      <option value="Termine">Termine</option>
+                    </select>
+                  </label>
+                  <label class="field field--half">
+                    <span>Priorite</span>
+                    <select id="notePriority" name="priority">
+                      <option value="faible">Faible</option>
+                      <option value="moyenne" selected>Moyenne</option>
+                      <option value="haute">Haute</option>
+                      <option value="urgente">Urgente</option>
+                    </select>
+                  </label>
+                </div>
+                
                 <label class="field">
-                  <span>Statut</span>
-                  <select id="noteStatus" name="status">
-                    <option value="En cours">En cours</option>
-                    <option value="En validation">En validation</option>
-                  </select>
+                  <span>Tags (separes par des virgules)</span>
+                  <input id="noteTags" name="tags" type="text" maxlength="120" placeholder="idee, projet, rappel" />
                 </label>
+                
+                <label class="field">
+                  <span>Date d'echeance</span>
+                  <input id="noteDueDate" name="dueDate" type="datetime-local" />
+                </label>
+                
                 <label class="field">
                   <span>Contenu</span>
-                  <textarea id="noteContent" name="content" rows="4" maxlength="240" required></textarea>
+                  <textarea id="noteContent" name="content" rows="6" maxlength="2000" required placeholder="Ecris ta note ici..."></textarea>
+                  <span class="field-hint" id="contentCharCount">0/2000 caracteres</span>
                 </label>
+                
                 <p id="notesFeedback" class="feedback" aria-live="polite"></p>
-                <button class="primary-action primary-action--small" type="submit">Enregistrer</button>
+                <div class="form-actions">
+                  <button class="primary-action primary-action--small" type="submit">
+                    <span class="material-symbols-rounded" aria-hidden="true">save</span>
+                    Enregistrer
+                  </button>
+                  <button id="clearNotesForm" class="secondary-action secondary-action--small" type="button">
+                    Effacer
+                  </button>
+                </div>
               </form>
 
-              <div class="list-panel">
+              <div class="list-panel list-panel--notes">
                 <div class="mini-head">
                   <h3>Notes recentes</h3>
-                  <span class="mini-badge mini-badge--soft">Memo</span>
+                  <span class="mini-badge mini-badge--soft" id="notesCountBadge">0</span>
                 </div>
-                <ul id="notesList" class="stack-list">
+                <ul id="notesList" class="stack-list stack-list--notes">
                   <li class="empty-state">Aucune note enregistree.</li>
                 </ul>
               </div>
